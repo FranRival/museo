@@ -700,6 +700,15 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
 
   /* ---------- video ---------- */
   const vs = slots['video-main'], v = vs.media, vw = $('#vwrap'), seek = $('#vseek');
+  /* Video por URL */
+const VIDEO_URL = "https://yourimageshare.com/ib/I4rspnkIzd.mp4";
+if (VIDEO_URL) {
+  v.src = VIDEO_URL;
+  v.hidden = false;
+  vs.el.classList.add('filled');
+  vw.classList.add('has');
+  v.addEventListener('error', () => toast('No se pudo cargar el video. Revisa el enlace.'));
+}
   const fmt = s => { if (!isFinite(s)) return '0:00'; const m = Math.floor(s / 60); return m + ':' + String(Math.floor(s % 60)).padStart(2, '0'); };
   const toggle = () => { v.paused ? v.play() : v.pause(); };
   vs.el.addEventListener('slotchange', () => { vw.classList.toggle('has', vs.filled); vw.classList.remove('playing'); $('#vtime').textContent = '0:00 / 0:00'; seek.value = 0; fill(seek); });
