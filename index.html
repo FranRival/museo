@@ -1,0 +1,752 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Museo Umbral</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EAECEF; --bg2:#DEE1E6; --ink:#14161C; --muted:#4A5163; --paper:#F8F8F6;
+  --line:rgba(20,22,28,.18); --ph:#D5D9DF; --ph-line:rgba(20,22,28,.10);
+  --ultra:#2336C4; --ultra-deep:#161F78; --saffron:#F0B429; --focus:#2336C4;
+  --wall:#E4E6E9; --floor1:#CFD3D9; --floor2:#BCC1C9;
+  --ui:"Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --text:"Newsreader", Georgia, "Times New Roman", serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1015; --bg2:#151821; --ink:#ECEEF3; --muted:#A3AABB; --paper:#1B1F2A;
+    --line:rgba(236,238,243,.18); --ph:#1D212C; --ph-line:rgba(236,238,243,.09); --focus:#9DABFF;
+    --wall:#20242F; --floor1:#171A22; --floor2:#10121A;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1015; --bg2:#151821; --ink:#ECEEF3; --muted:#A3AABB; --paper:#1B1F2A;
+  --line:rgba(236,238,243,.18); --ph:#1D212C; --ph-line:rgba(236,238,243,.09); --focus:#9DABFF;
+  --wall:#20242F; --floor1:#171A22; --floor2:#10121A;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px);height:auto}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 19px/1.55 var(--text);-webkit-font-smoothing:antialiased}
+img{max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+button{font-family:var(--ui)}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(18px,4vw,48px)}
+section{padding:clamp(64px,9vw,120px) 0}
+h1,h2,h3{font-family:var(--ui);margin:0;font-variation-settings:"wdth" 85,"opsz" 60}
+h2{font-size:clamp(2.1rem,4.6vw,3.6rem);font-weight:650;letter-spacing:-.025em;line-height:1}
+h3{font-size:1.2rem;font-weight:650;letter-spacing:-.01em;line-height:1.15}
+.lead{color:var(--muted);max-width:34rem;margin:.9rem 0 0}
+.head{display:flex;flex-wrap:wrap;gap:20px 40px;justify-content:space-between;align-items:flex-end;margin-bottom:clamp(28px,4vw,48px)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;font:600 15px/1 var(--ui);padding:14px 22px;border-radius:99px;border:1.5px solid var(--ink);background:var(--ink);color:var(--bg);text-decoration:none;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn:hover{transform:translateY(-1px)}
+.btn.small{padding:10px 16px;font-size:13.5px}
+
+/* header */
+header.top{padding:18px 0}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{font:700 1.5rem/1 var(--ui);letter-spacing:-.03em;font-variation-settings:"wdth" 80;text-decoration:none}
+.links{display:flex;gap:26px;font:500 15px var(--ui)}
+.links a{text-decoration:none;padding:6px 0;border-bottom:1.5px solid transparent}
+.links a:hover{border-color:var(--ink)}
+@media (max-width:820px){.links{display:none}}
+
+/* hero */
+.hero{padding-top:clamp(28px,5vw,64px)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,5vw,72px);align-items:center}
+.hero h1{font-size:clamp(3.6rem,9vw,8rem);font-weight:760;letter-spacing:-.045em;line-height:.88;font-variation-settings:"wdth" 78,"opsz" 96}
+.hero p{margin:1.4rem 0 1.8rem;color:var(--muted);max-width:26rem}
+.hero .row{display:flex;flex-wrap:wrap;gap:12px}
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr}}
+
+/* slots */
+.slot{position:relative;display:block;overflow:hidden;cursor:pointer;container-type:inline-size;
+  background:repeating-linear-gradient(135deg,transparent 0 11px,var(--ph-line) 11px 12px),var(--ph)}
+.slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.slot img[hidden]{display:none}
+.ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;text-align:center;color:var(--muted);padding:.5rem;font:500 13px/1.25 var(--ui)}
+.ph b{font-weight:650;color:var(--ink)}
+.ph span{font-size:11.5px}
+.ph svg{opacity:.8}
+@container (max-width:170px){.ph span{display:none}}
+@container (max-width:105px){.ph b{display:none}}
+.slot.filled .ph{display:none}
+.slot.filled{cursor:default}
+.slot.filled[data-zoom]{cursor:zoom-in}
+.slot.drag{outline:3px dashed var(--focus);outline-offset:-3px}
+.tools{position:absolute;left:6px;right:6px;bottom:6px;display:none;flex-wrap:wrap;gap:4px;justify-content:center;z-index:5}
+.slot.filled .tools{display:flex;opacity:0;transition:opacity .15s}
+.slot.filled:hover .tools,.slot.filled:focus-within .tools{opacity:1}
+@media (hover:none){.slot.filled .tools{opacity:1}}
+.tools button{font:600 11.5px/1 var(--ui);padding:6px 9px;border-radius:99px;border:0;background:rgba(12,14,20,.84);color:#fff;cursor:pointer}
+.tools button:hover{background:#000}
+@container (max-width:120px){.tools button{padding:5px 6px;font-size:10px}}
+
+/* estilos aplicados a las propias imágenes */
+.fx-bn img{filter:grayscale(var(--i,1)) contrast(1.06)}
+.fx-sepia img{filter:sepia(var(--i,1)) contrast(1.05) saturate(1.1)}
+.fx-contrast img{filter:contrast(calc(1 + var(--i,1)*.6)) saturate(calc(1 + var(--i,1)*.5))}
+.fx-duo img{filter:grayscale(var(--i,1)) contrast(1.15)}
+.fx-duo.filled::before,.fx-duo.filled::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2}
+.fx-duo.filled::before{background:var(--saffron);mix-blend-mode:multiply;opacity:var(--i,1)}
+.fx-duo.filled::after{background:#2336C4;mix-blend-mode:screen;opacity:var(--i,1)}
+
+/* ranges */
+.range{-webkit-appearance:none;appearance:none;width:100%;height:28px;background:transparent;cursor:pointer;margin:0;--fill:50%}
+.range::-webkit-slider-runnable-track{height:3px;border-radius:3px;background:linear-gradient(90deg,var(--rfill,var(--ink)) var(--fill),var(--line) var(--fill))}
+.range::-moz-range-track{height:3px;border-radius:3px;background:var(--line)}
+.range::-moz-range-progress{height:3px;border-radius:3px;background:var(--rfill,var(--ink))}
+.range::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--saffron);border:2px solid var(--thumbb,var(--ink));margin-top:-9.5px}
+.range::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--saffron);border:2px solid var(--thumbb,var(--ink))}
+.ctl{display:grid;gap:2px;font:500 14px var(--ui)}
+.ctl label{display:flex;justify-content:space-between}
+.ctl output{color:var(--muted);font-variant-numeric:tabular-nums}
+
+/* sala de luz */
+.stage{--l:.72;--t:.4;position:relative;aspect-ratio:5/4;background:var(--wall);overflow:hidden;isolation:isolate;border-radius:4px;box-shadow:0 30px 60px -30px rgba(10,12,30,.5)}
+.stage .floor{position:absolute;left:0;right:0;bottom:0;height:14%;background:linear-gradient(var(--floor1),var(--floor2));border-top:1px solid var(--line)}
+.stage .slot{position:absolute;box-shadow:0 26px 30px -18px rgba(0,0,0,.5)}
+.f-arch{left:7%;bottom:15%;width:33%;aspect-ratio:3/4.4;border-radius:999px 999px 0 0}
+.f-circle{left:44%;top:9%;width:22%;aspect-ratio:1;border-radius:50%}
+.mat{position:absolute;right:6%;bottom:15%;width:28%;background:#FBFBF9;padding:6%;box-shadow:0 26px 30px -18px rgba(0,0,0,.5)}
+.mat .slot{position:relative;aspect-ratio:4/5;box-shadow:inset 0 0 0 1px rgba(0,0,0,.1)}
+.stage .mat .slot{position:relative;box-shadow:none}
+.cartela{position:absolute;left:44%;bottom:19%;width:20%;background:#FBFBF9;color:#14161C;padding:.45rem .6rem;font:500 clamp(8px,1.1vw,12px)/1.3 var(--ui);box-shadow:0 8px 14px -8px rgba(0,0,0,.4)}
+.cartela b{display:block;font-weight:700}
+@media (max-width:560px){.cartela{display:none}}
+.stage .spot{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:calc(var(--l)*.55);
+  background:radial-gradient(40% 75% at 24% 0%,rgba(255,255,255,.95),transparent 70%),radial-gradient(30% 60% at 55% 0%,rgba(255,255,255,.8),transparent 70%),radial-gradient(34% 70% at 82% 0%,rgba(255,255,255,.8),transparent 70%)}
+.stage .dim{position:absolute;inset:0;z-index:3;pointer-events:none;background:#05060b;opacity:calc((1 - var(--l))*.88)}
+.stage .warm,.stage .cool{position:absolute;inset:0;z-index:4;pointer-events:none;mix-blend-mode:multiply}
+.stage .warm{background:#FFB04A;opacity:calc(var(--t)*.5)}
+.stage .cool{background:#7FA2FF;opacity:calc((1 - var(--t))*.26)}
+.lights{display:grid;grid-template-columns:1fr 1fr;gap:18px 32px;margin-top:20px}
+@media (max-width:520px){.lights{grid-template-columns:1fr}}
+
+/* exposiciones */
+.band{background:var(--bg2)}
+.nav-btns{display:flex;gap:10px}
+.round{width:48px;height:48px;border-radius:50%;border:1.5px solid var(--ink);background:transparent;color:var(--ink);display:grid;place-items:center;cursor:pointer}
+.round:hover:not(:disabled){background:var(--ink);color:var(--bg)}
+.round:disabled{opacity:.3;cursor:default}
+.track{display:flex;gap:clamp(16px,2.4vw,32px);overflow-x:auto;scroll-snap-type:x mandatory;padding:4px clamp(18px,4vw,48px) 14px;scrollbar-width:none;cursor:grab;
+  margin:0 calc(-1 * clamp(18px,4vw,48px))}
+.track::-webkit-scrollbar{display:none}
+.track.dragging{scroll-snap-type:none;cursor:grabbing;scroll-behavior:auto}
+.card{flex:0 0 clamp(250px,26vw,330px);scroll-snap-align:start}
+.media{position:relative;aspect-ratio:4/5;margin-bottom:18px}
+.media .slot{position:absolute}
+.s-arch{inset:0;border-radius:999px 999px 0 0}
+.s-circle{left:0;right:0;bottom:0;aspect-ratio:1}
+.s-circle.slot{border-radius:50%}
+.s-cap{inset:0 15%;border-radius:999px}
+.s-leaf{inset:0;border-radius:140px 0 140px 0}
+.s-mat{inset:0;background:var(--paper);padding:14px;box-shadow:0 14px 26px -16px rgba(10,12,30,.5),inset 0 0 0 1px var(--line)}
+.s-mat .slot{position:relative;width:100%;height:100%}
+.pill{display:inline-block;font:600 12px/1 var(--ui);padding:5px 9px;border-radius:99px;border:1.2px solid var(--ink);margin-bottom:10px}
+.pill.on{background:var(--ink);color:var(--bg)}
+.card p{margin:.4rem 0 0;font-size:16px;color:var(--muted);line-height:1.45}
+.card .meta{font:500 13.5px/1.35 var(--ui);color:var(--ink);margin-top:.5rem}
+.prog{position:relative;height:3px;background:var(--line);border-radius:3px;margin-top:10px;--p:0;--vis:.3}
+.prog i{position:absolute;top:0;bottom:0;border-radius:3px;background:var(--ink);width:calc(var(--vis)*100%);left:calc(var(--p)*(1 - var(--vis))*100%)}
+
+/* colección */
+.panel{display:flex;flex-wrap:wrap;gap:18px 36px;align-items:center;padding:16px 0;border-top:1.5px solid var(--ink);border-bottom:1px solid var(--line);margin-bottom:30px}
+.group{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font:500 14px var(--ui)}
+.group>span{color:var(--muted);margin-right:4px}
+.chip{border:1.3px solid var(--line);background:transparent;color:var(--ink);padding:8px 14px;border-radius:99px;font:550 14px/1 var(--ui);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.panel .ctl{min-width:190px}
+.coll{--i:1;columns:4 210px;column-gap:20px}
+.piece{break-inside:avoid;margin:0 0 26px}
+.piece[hidden]{display:none}
+.piece .slot{width:100%}
+.piece figcaption{font:600 15px/1.3 var(--ui);margin-top:10px}
+.piece figcaption small{display:block;font:400 15px/1.35 var(--text);color:var(--muted)}
+
+/* restauración */
+.rest{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:clamp(28px,5vw,72px);align-items:center}
+@media (max-width:900px){.rest{grid-template-columns:1fr}}
+.cmp{--p:50;position:relative;aspect-ratio:16/10;overflow:hidden;border-radius:4px;box-shadow:0 30px 60px -34px rgba(10,12,30,.55);user-select:none;touch-action:pan-y}
+.cmp .slot{position:absolute;inset:0;pointer-events:none}
+.cmp .slot .tools{display:none!important}
+.cmp #cmp-after{clip-path:inset(0 0 0 calc(var(--p)*1%))}
+.cmp.aged #cmp-before img{filter:sepia(.55) contrast(.9) saturate(.7) brightness(.95)}
+.cmp input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0;z-index:4}
+.cmp .handle{position:absolute;top:0;bottom:0;left:calc(var(--p)*1%);width:2px;margin-left:-1px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.3);z-index:3;pointer-events:none}
+.cmp .knob{position:absolute;top:50%;left:50%;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;background:#fff;color:#14161C;display:grid;place-items:center;box-shadow:0 6px 16px rgba(0,0,0,.35)}
+.cmp input:focus-visible ~ .handle .knob{outline:3px solid var(--focus);outline-offset:3px}
+.cmp .tag{position:absolute;top:12px;z-index:3;pointer-events:none;background:rgba(12,14,20,.8);color:#fff;font:600 12.5px/1 var(--ui);padding:7px 11px;border-radius:99px}
+.cmp .tag.l{left:12px}.cmp .tag.r{right:12px}
+.cmp-tools{display:flex;flex-wrap:wrap;gap:10px 14px;margin-top:22px;align-items:center}
+.check{display:flex;gap:8px;align-items:center;font:500 14px var(--ui);cursor:pointer}
+.check input{width:18px;height:18px;accent-color:var(--ultra)}
+
+/* línea del tiempo */
+.time{background:var(--ultra);color:#fff;--ink:#fff;--line:rgba(255,255,255,.3);--rfill:#fff;--thumbb:#fff;--muted:rgba(255,255,255,.78);--ph:#2D43D8;--ph-line:rgba(255,255,255,.14);--focus:#fff}
+.time .grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(28px,5vw,80px);align-items:center}
+@media (max-width:900px){.time .grid{grid-template-columns:1fr}}
+.year{font:780 clamp(5.5rem,16vw,12.5rem)/.85 var(--ui);letter-spacing:-.06em;font-variation-settings:"wdth" 76,"opsz" 96;font-variant-numeric:tabular-nums;margin:10px 0 24px;color:var(--saffron)}
+.time h3{font-size:clamp(1.6rem,3vw,2.3rem);letter-spacing:-.02em}
+.time p{max-width:30rem;margin:.7rem 0 0;font-size:19px}
+.time .where{font:500 15px var(--ui);margin-top:1rem}
+.scrub{margin-top:34px;max-width:36rem}
+.ticks{position:relative;height:38px;font:500 12.5px/1.15 var(--ui);color:var(--muted)}
+.ticks span{position:absolute;top:2px;transform:translateX(0);padding-left:7px;border-left:1.5px solid var(--line);white-space:nowrap}
+.era-stage{position:relative;aspect-ratio:4/5;border-top-right-radius:50% 36%;overflow:hidden}
+.era-stage .slot{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .45s}
+.era-stage .slot.on{opacity:1;pointer-events:auto}
+
+/* visita */
+.visit{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,72px)}
+@media (max-width:900px){.visit{grid-template-columns:1fr}}
+dl.hours{margin:1.6rem 0 0;display:grid;grid-template-columns:auto 1fr;gap:0;font:500 16px var(--ui);max-width:30rem}
+dl.hours dt,dl.hours dd{margin:0;padding:12px 0;border-top:1px solid var(--line)}
+dl.hours dd{text-align:right;color:var(--muted)}
+.addr{margin-top:1.4rem;color:var(--muted)}
+.tix{background:var(--paper);border:1px solid var(--line);padding:clamp(20px,3vw,34px);border-radius:4px}
+.tix h3{font-size:1.5rem;margin-bottom:6px}
+.trow{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);font:500 16px var(--ui)}
+.trow small{display:block;color:var(--muted);font:400 14px var(--ui)}
+.step{display:flex;align-items:center;gap:12px}
+.step button{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--ink);background:transparent;color:var(--ink);font-size:20px;line-height:1;cursor:pointer}
+.step button:hover{background:var(--ink);color:var(--bg)}
+.step output{min-width:1.6em;text-align:center;font-variant-numeric:tabular-nums}
+.date{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;font:500 16px var(--ui)}
+.date input{font:500 15px var(--ui);padding:9px 12px;border:1.3px solid var(--line);background:var(--bg);color:var(--ink);border-radius:6px;color-scheme:light dark}
+.total{display:flex;justify-content:space-between;align-items:baseline;margin:10px 0 18px;font:650 1.5rem var(--ui)}
+.note{font:400 13.5px var(--ui);color:var(--muted);margin:12px 0 0}
+
+footer{background:var(--ultra-deep);color:#fff;padding:56px 0 48px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:24px 60px;justify-content:space-between;align-items:flex-end}
+footer .brand{font-size:2.6rem}
+footer p{margin:.6rem 0 0;max-width:24rem;color:rgba(255,255,255,.75)}
+footer nav{display:flex;gap:22px;flex-wrap:wrap;font:500 15px var(--ui)}
+
+/* lightbox y aviso */
+dialog{border:0;padding:0;background:transparent;max-width:min(92vw,1000px);max-height:92vh;color:#fff;overflow:visible}
+dialog::backdrop{background:rgba(6,8,14,.88)}
+.lbfig{position:relative;margin:0;display:block}
+.lbfig img{display:block;max-width:100%;max-height:78vh;margin:0 auto;object-fit:contain}
+#lbcap{margin:14px 0 0;font:500 15px/1.4 var(--ui);text-align:center;white-space:pre-line}
+.x{position:absolute;right:0;top:-48px;border:0;background:#fff;color:#14161C;font:650 14px var(--ui);padding:9px 14px;border-radius:99px;cursor:pointer}
+#toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:#14161C;color:#fff;font:500 14.5px var(--ui);padding:12px 18px;border-radius:99px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:50;max-width:90vw;text-align:center}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#">Museo Umbral</a>
+    <nav class="links" aria-label="Principal">
+      <a href="#exposiciones">Exposiciones</a>
+      <a href="#coleccion">Colección</a>
+      <a href="#restauracion">Restauración</a>
+      <a href="#historia">Historia</a>
+      <a href="#visita">Visita</a>
+    </nav>
+    <a class="btn small" href="#visita">Comprar boletos</a>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero" style="padding-bottom:clamp(64px,9vw,120px)">
+  <div class="wrap">
+    <div>
+      <h1>Mira despacio.</h1>
+      <p>Arte contemporáneo, archivo y memoria. Cinco salas, un patio de cantera y un taller de restauración que se puede ver trabajar.</p>
+      <div class="row">
+        <a class="btn" href="#exposiciones">Ver exposiciones</a>
+        <a class="btn ghost" href="#visita">Planear mi visita</a>
+      </div>
+    </div>
+    <div>
+      <div class="stage" id="stage" aria-label="Sala de exhibición con obras">
+        <div class="slot f-arch" data-id="hero-arch" data-label="Obra principal de la sala" data-hint="Vertical, proporción 3:4"></div>
+        <div class="slot f-circle" data-id="hero-circle" data-label="Obra circular" data-hint="Cuadrada, 1:1"></div>
+        <div class="mat"><div class="slot" data-id="hero-mat" data-label="Obra enmarcada" data-hint="Vertical, 4:5"></div></div>
+        <div class="cartela"><b>Sin título (azul)</b>Técnica mixta, 1974</div>
+        <div class="floor"></div>
+        <div class="spot"></div><div class="dim"></div><div class="warm"></div><div class="cool"></div>
+      </div>
+      <div class="lights">
+        <div class="ctl"><label for="light">Luz de sala <output id="lightv">72%</output></label><input class="range" id="light" type="range" min="0" max="100" value="72"></div>
+        <div class="ctl"><label for="temp">Temperatura <output id="tempv">Neutra</output></label><input class="range" id="temp" type="range" min="0" max="100" value="40"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPOSICIONES -->
+<section class="band" id="exposiciones">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <h2>Exposiciones</h2>
+        <p class="lead">Desliza para recorrer lo que está abierto y lo que viene. Cada imagen tiene su propia forma de marco.</p>
+      </div>
+      <div class="nav-btns">
+        <button class="round" id="prev" aria-label="Exposición anterior"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 5-7 7 7 7"/></svg></button>
+        <button class="round" id="next" aria-label="Exposición siguiente"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg></button>
+      </div>
+    </div>
+    <div class="track" id="track" tabindex="0" role="region" aria-label="Carrusel de exposiciones">
+      <article class="card">
+        <div class="media"><div class="slot s-arch" data-id="ex-1" data-label="Cartografías del agua" data-hint="Vertical, 3:4"></div></div>
+        <span class="pill on">En curso</span>
+        <h3>Cartografías del agua</h3>
+        <p>Mapas, planos y pinturas que siguen el recorrido de un río desaparecido.</p>
+        <div class="meta">Hasta el 28 de febrero de 2027<br>Salas 1 y 2</div>
+      </article>
+      <article class="card">
+        <div class="media"><div class="s-mat"><div class="slot" data-id="ex-2" data-label="Retratos sin rostro" data-hint="Vertical, 4:5"></div></div></div>
+        <span class="pill on">En curso</span>
+        <h3>Retratos sin rostro</h3>
+        <p>Fotografía donde la persona aparece solo a través de sus objetos y su casa.</p>
+        <div class="meta">Hasta el 10 de enero de 2027<br>Sala 3</div>
+      </article>
+      <article class="card">
+        <div class="media"><div class="slot s-circle" data-id="ex-3" data-label="Taller de sombras" data-hint="Cuadrada, 1:1"></div></div>
+        <span class="pill">Próxima</span>
+        <h3>Taller de sombras</h3>
+        <p>Instalación de luz y papel recortado, hecha para recorrerse despacio.</p>
+        <div class="meta">Desde el 5 de noviembre de 2026<br>Sala 4</div>
+      </article>
+      <article class="card">
+        <div class="media"><div class="slot s-cap" data-id="ex-4" data-label="Objetos que sobreviven" data-hint="Vertical, 2:3"></div></div>
+        <span class="pill">Próxima</span>
+        <h3>Objetos que sobreviven</h3>
+        <p>Piezas cotidianas rescatadas de casas, talleres y mercados.</p>
+        <div class="meta">Desde el 14 de enero de 2027<br>Sala 5</div>
+      </article>
+      <article class="card">
+        <div class="media"><div class="slot s-leaf" data-id="ex-5" data-label="Cantera: escultura 1950–2000" data-hint="Vertical, 4:5"></div></div>
+        <span class="pill">Próxima</span>
+        <h3>Cantera: escultura 1950–2000</h3>
+        <p>Cinco décadas de piedra labrada, de la pieza pequeña al monumento.</p>
+        <div class="meta">Desde el 11 de marzo de 2027<br>Patio central</div>
+      </article>
+    </div>
+    <div class="prog" id="prog" aria-hidden="true"><i></i></div>
+  </div>
+</section>
+
+<!-- COLECCIÓN -->
+<section id="coleccion">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <h2>Colección</h2>
+        <p class="lead">Sube tus fotos, filtra por tipo de obra y cambia el tratamiento de todas las imágenes a la vez. Haz clic en una imagen para verla grande.</p>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="group" id="chips" role="group" aria-label="Filtrar por tipo">
+        <span>Mostrar</span>
+        <button class="chip" data-f="all" aria-pressed="true">Todo</button>
+        <button class="chip" data-f="Pintura" aria-pressed="false">Pintura</button>
+        <button class="chip" data-f="Escultura" aria-pressed="false">Escultura</button>
+        <button class="chip" data-f="Fotografía" aria-pressed="false">Fotografía</button>
+        <button class="chip" data-f="Objetos" aria-pressed="false">Objetos</button>
+      </div>
+      <div class="group" id="fxs" role="group" aria-label="Tratamiento de imagen">
+        <span>Tratamiento</span>
+        <button class="chip" data-fx="" aria-pressed="true">Original</button>
+        <button class="chip" data-fx="bn" aria-pressed="false">Blanco y negro</button>
+        <button class="chip" data-fx="sepia" aria-pressed="false">Sepia</button>
+        <button class="chip" data-fx="duo" aria-pressed="false">Duotono</button>
+        <button class="chip" data-fx="contrast" aria-pressed="false">Contraste</button>
+      </div>
+      <div class="ctl"><label for="inten">Intensidad <output id="intenv">100%</output></label><input class="range" id="inten" type="range" min="0" max="100" value="100"></div>
+    </div>
+    <div class="coll" id="coll">
+      <figure class="piece" data-cat="Pintura"><div class="slot" data-zoom data-id="coll-1" data-label="Campo de azul" data-hint="Vertical, 3:4" style="aspect-ratio:3/4"></div><figcaption>Campo de azul<small>Óleo sobre tela, 1962</small></figcaption></figure>
+      <figure class="piece" data-cat="Escultura"><div class="slot" data-zoom data-id="coll-2" data-label="Torso en cantera" data-hint="Cuadrada, 1:1" style="aspect-ratio:1/1"></div><figcaption>Torso en cantera<small>Cantera rosa, 1974</small></figcaption></figure>
+      <figure class="piece" data-cat="Fotografía"><div class="slot" data-zoom data-id="coll-3" data-label="Calle vacía a las seis" data-hint="Horizontal, 4:3" style="aspect-ratio:4/3"></div><figcaption>Calle vacía a las seis<small>Plata sobre gelatina, 1988</small></figcaption></figure>
+      <figure class="piece" data-cat="Objetos"><div class="slot" data-zoom data-id="coll-4" data-label="Reloj sin manecillas" data-hint="Vertical, 4:5" style="aspect-ratio:4/5"></div><figcaption>Reloj sin manecillas<small>Latón y vidrio, hacia 1920</small></figcaption></figure>
+      <figure class="piece" data-cat="Pintura"><div class="slot" data-zoom data-id="coll-5" data-label="Autorretrato con ventana" data-hint="Cuadrada, 1:1" style="aspect-ratio:1/1"></div><figcaption>Autorretrato con ventana<small>Acrílico sobre madera, 1999</small></figcaption></figure>
+      <figure class="piece" data-cat="Fotografía"><div class="slot" data-zoom data-id="coll-6" data-label="Mercado, dos mujeres" data-hint="Vertical, 3:4" style="aspect-ratio:3/4.4"></div><figcaption>Mercado, dos mujeres<small>Copia de época, 1957</small></figcaption></figure>
+      <figure class="piece" data-cat="Escultura"><div class="slot" data-zoom data-id="coll-7" data-label="Peso muerto" data-hint="Vertical, 4:5" style="aspect-ratio:4/5"></div><figcaption>Peso muerto<small>Hierro forjado, 1981</small></figcaption></figure>
+      <figure class="piece" data-cat="Objetos"><div class="slot" data-zoom data-id="coll-8" data-label="Cuaderno de campo" data-hint="Horizontal, 3:2" style="aspect-ratio:3/2"></div><figcaption>Cuaderno de campo<small>Papel y tinta, 1955</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- RESTAURACIÓN -->
+<section class="band" id="restauracion">
+  <div class="wrap rest">
+    <div>
+      <h2>Restauración a la vista</h2>
+      <p class="lead">Desliza la línea para comparar una obra antes y después de pasar por el taller. Sube dos fotos de la misma pieza.</p>
+      <div class="cmp-tools">
+        <button class="btn small ghost" id="pick-before" type="button">Subir foto de antes</button>
+        <button class="btn small ghost" id="pick-after" type="button">Subir foto de después</button>
+        <label class="check"><input type="checkbox" id="aged"> Envejecer la foto de antes</label>
+      </div>
+    </div>
+    <div class="cmp" id="cmp">
+      <div class="slot" id="cmp-before" data-id="cmp-before" data-label="Obra antes de restaurar" data-hint="Horizontal, 16:10"></div>
+      <div class="slot" id="cmp-after" data-id="cmp-after" data-label="Obra después de restaurar" data-hint="Horizontal, 16:10"></div>
+      <span class="tag l">Antes</span><span class="tag r">Después</span>
+      <input type="range" id="cmpr" min="0" max="100" value="50" aria-label="Comparar antes y después">
+      <div class="handle"><div class="knob"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 7-5 5 5 5M15 7l5 5-5 5"/></svg></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORIA -->
+<section class="time" id="historia">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <h2>Cien años de colección</h2>
+        <div class="year" id="year" aria-hidden="true">1964</div>
+        <h3 id="era-name">Cantera y abstracción</h3>
+        <p id="era-text"></p>
+        <div class="where" id="era-where"></div>
+        <div class="scrub">
+          <label for="yr" style="font:500 14px var(--ui)">Elige un año</label>
+          <input class="range" id="yr" type="range" min="1920" max="2026" value="1964">
+          <div class="ticks" id="ticks" aria-hidden="true"></div>
+        </div>
+      </div>
+      <div class="era-stage" id="eras">
+        <div class="slot" data-id="era-0" data-label="Vanguardias, 1920 a 1949" data-hint="Vertical, 4:5"></div>
+        <div class="slot" data-id="era-1" data-label="Cantera y abstracción, 1950 a 1979" data-hint="Vertical, 4:5"></div>
+        <div class="slot" data-id="era-2" data-label="Imagen y archivo, 1980 a 1999" data-hint="Vertical, 4:5"></div>
+        <div class="slot" data-id="era-3" data-label="Presente en proceso, 2000 a 2026" data-hint="Vertical, 4:5"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISITA -->
+<section id="visita">
+  <div class="wrap visit">
+    <div>
+      <h2>Planea tu visita</h2>
+      <p class="lead">Reserva con fecha y entra sin fila. Los horarios y precios de esta página son de ejemplo.</p>
+      <dl class="hours">
+        <dt>Martes a domingo</dt><dd>10:00 a 18:00</dd>
+        <dt>Jueves</dt><dd>10:00 a 20:00</dd>
+        <dt>Lunes</dt><dd>Cerrado</dd>
+      </dl>
+      <p class="addr">Calle y número del museo, ciudad.<br>Escribe aquí cómo llegar.</p>
+    </div>
+    <div class="tix">
+      <h3>Boletos</h3>
+      <div class="trow"><div>General<small>$120 por persona</small></div><div class="step"><button type="button" data-t="0" data-d="-1" aria-label="Quitar un boleto general">−</button><output id="n0">0</output><button type="button" data-t="0" data-d="1" aria-label="Agregar un boleto general">+</button></div></div>
+      <div class="trow"><div>Estudiantes y docentes<small>$60 por persona, con credencial</small></div><div class="step"><button type="button" data-t="1" data-d="-1" aria-label="Quitar un boleto de estudiante">−</button><output id="n1">0</output><button type="button" data-t="1" data-d="1" aria-label="Agregar un boleto de estudiante">+</button></div></div>
+      <div class="trow"><div>Menores de 12 años<small>Entrada libre</small></div><div class="step"><button type="button" data-t="2" data-d="-1" aria-label="Quitar un boleto de menor">−</button><output id="n2">0</output><button type="button" data-t="2" data-d="1" aria-label="Agregar un boleto de menor">+</button></div></div>
+      <div class="date"><label for="date">Fecha de visita</label><input type="date" id="date"></div>
+      <div class="total"><span>Total</span><span id="total">$0.00</span></div>
+      <button class="btn" id="reserve" type="button" style="width:100%;justify-content:center">Reservar</button>
+      <p class="note">Es una demostración: no se hace ningún cobro.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="brand">Museo Umbral</div>
+      <p>Arte contemporáneo, archivo y memoria.</p>
+    </div>
+    <nav aria-label="Pie de página">
+      <a href="#exposiciones">Exposiciones</a>
+      <a href="#coleccion">Colección</a>
+      <a href="#restauracion">Restauración</a>
+      <a href="#visita">Visita</a>
+    </nav>
+  </div>
+</footer>
+
+<dialog id="lb" aria-label="Imagen ampliada">
+  <button class="x" type="button">Cerrar</button>
+  <figure class="lbfig filled" id="lbfig"><img id="lbimg" alt=""><figcaption id="lbcap"></figcaption></figure>
+</dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(() => {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- aviso ---------- */
+  let tt;
+  function toast(msg) {
+    const t = $('#toast');
+    t.textContent = msg; t.classList.add('show');
+    clearTimeout(tt); tt = setTimeout(() => t.classList.remove('show'), 2800);
+  }
+  const fill = r => r.style.setProperty('--fill', ((r.value - r.min) / (r.max - r.min) * 100) + '%');
+
+  /* ---------- guardado local de las imágenes (solo en este navegador) ---------- */
+  let dbp = null;
+  const db = () => dbp || (dbp = new Promise((res, rej) => {
+    try {
+      const r = indexedDB.open('museo-umbral', 1);
+      r.onupgradeneeded = () => r.result.createObjectStore('imgs');
+      r.onsuccess = () => res(r.result);
+      r.onerror = () => rej(r.error);
+    } catch (e) { rej(e); }
+  }));
+  async function store(mode, fn) {
+    try {
+      const d = await db();
+      return await new Promise((res, rej) => {
+        const tx = d.transaction('imgs', mode);
+        const req = fn(tx.objectStore('imgs'));
+        tx.oncomplete = () => res(req && req.result);
+        tx.onerror = () => rej(tx.error);
+      });
+    } catch (e) { return null; }
+  }
+  const saveImg = (id, b) => store('readwrite', s => s.put(b, id));
+  const delImg = id => store('readwrite', s => s.delete(id));
+  const getImg = id => store('readonly', s => s.get(id));
+
+  /* ---------- espacios para imágenes ---------- */
+  const FX = ['', 'bn', 'sepia', 'duo', 'contrast'];
+  const FXN = { '': 'Original', bn: 'Blanco y negro', sepia: 'Sepia', duo: 'Duotono', contrast: 'Alto contraste' };
+  const ICON = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="m21 16-5-5-8 8"/></svg>';
+  const slots = {};
+
+  function Slot(el) {
+    const id = el.dataset.id, label = el.dataset.label || 'Imagen';
+    el.innerHTML = '<input type="file" accept="image/*" hidden><img alt="" hidden>' +
+      '<div class="ph">' + ICON + '<b>Subir imagen</b><span>' + (el.dataset.hint || 'Arrastra o haz clic') + '</span></div>' +
+      '<div class="tools"><button type="button" data-act="replace">Cambiar</button><button type="button" data-act="fx">Estilo</button><button type="button" data-act="remove">Quitar</button></div>';
+    const input = $('input', el), img = $('img', el);
+    img.alt = label;
+    let url = null, fx = '';
+    try { fx = localStorage.getItem('fx:' + id) || ''; } catch (e) {}
+
+    const api = { el, input, get url() { return url; }, get fx() { return fx; } };
+
+    function sync() {
+      if (!url) { el.setAttribute('role', 'button'); el.tabIndex = 0; el.setAttribute('aria-label', 'Subir imagen: ' + label); }
+      else if (el.hasAttribute('data-zoom')) { el.setAttribute('role', 'button'); el.tabIndex = 0; el.setAttribute('aria-label', 'Ampliar: ' + label); }
+      else { el.removeAttribute('role'); el.removeAttribute('aria-label'); el.removeAttribute('tabindex'); }
+    }
+    function setFx(v, silent) {
+      FX.forEach(f => f && el.classList.remove('fx-' + f));
+      fx = v; if (v) el.classList.add('fx-' + v);
+      try { v ? localStorage.setItem('fx:' + id, v) : localStorage.removeItem('fx:' + id); } catch (e) {}
+    }
+    api.setFx = setFx;
+    function show(blob) {
+      if (url) URL.revokeObjectURL(url);
+      url = URL.createObjectURL(blob);
+      img.src = url; img.hidden = false; el.classList.add('filled'); sync();
+    }
+    function clear() {
+      if (url) URL.revokeObjectURL(url);
+      url = null; img.removeAttribute('src'); img.hidden = true; el.classList.remove('filled'); sync();
+    }
+    async function take(file) {
+      if (!file) return;
+      if (!file.type.startsWith('image/')) { toast('Ese archivo no es una imagen.'); return; }
+      if (file.size > 25 * 1024 * 1024) { toast('La imagen pesa más de 25 MB.'); return; }
+      show(file); await saveImg(id, file);
+    }
+
+    input.addEventListener('click', e => e.stopPropagation());
+    input.addEventListener('change', () => { take(input.files[0]); input.value = ''; });
+    el.addEventListener('click', e => {
+      const b = e.target.closest('.tools button');
+      if (b) {
+        if (b.dataset.act === 'replace') input.click();
+        if (b.dataset.act === 'remove') { clear(); delImg(id); }
+        if (b.dataset.act === 'fx') { const n = FX[(FX.indexOf(fx) + 1) % FX.length]; setFx(n); toast('Estilo: ' + FXN[n]); }
+        return;
+      }
+      if (!url) input.click(); else if (el.hasAttribute('data-zoom')) openLb(api);
+    });
+    el.addEventListener('keydown', e => {
+      if (e.target !== el) return;
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); }
+    });
+    ['dragenter', 'dragover'].forEach(t => el.addEventListener(t, e => { e.preventDefault(); el.classList.add('drag'); }));
+    ['dragleave', 'drop'].forEach(t => el.addEventListener(t, e => { e.preventDefault(); el.classList.remove('drag'); }));
+    el.addEventListener('drop', e => take(e.dataTransfer.files[0]));
+
+    setFx(fx); sync();
+    getImg(id).then(b => { if (b instanceof Blob) show(b); });
+    slots[id] = api;
+  }
+  $$('.slot').forEach(Slot);
+  window.addEventListener('dragover', e => e.preventDefault());
+  window.addEventListener('drop', e => e.preventDefault());
+
+  /* ---------- lightbox ---------- */
+  const lb = $('#lb');
+  function openLb(api) {
+    $('#lbimg').src = api.url; $('#lbimg').alt = api.el.dataset.label;
+    const fig = $('#lbfig');
+    fig.className = 'lbfig filled' + (api.fx ? ' fx-' + api.fx : '');
+    fig.style.setProperty('--i', getComputedStyle(api.el).getPropertyValue('--i') || 1);
+    const cap = api.el.closest('.piece') && $('figcaption', api.el.closest('.piece'));
+    $('#lbcap').textContent = cap ? cap.innerText : api.el.dataset.label;
+    lb.showModal();
+  }
+  lb.addEventListener('click', e => { if (e.target === lb || e.target.closest('.x')) lb.close(); });
+
+  /* ---------- sala: luz y temperatura ---------- */
+  const stage = $('#stage'), L = $('#light'), T = $('#temp');
+  function tempName(v) { return v < 25 ? 'Fría' : v < 60 ? 'Neutra' : v < 85 ? 'Cálida' : 'Ámbar'; }
+  function applyLight() {
+    stage.style.setProperty('--l', L.value / 100);
+    stage.style.setProperty('--t', T.value / 100);
+    $('#lightv').textContent = L.value + '%';
+    $('#tempv').textContent = tempName(+T.value);
+    fill(L); fill(T);
+  }
+  let touched = false;
+  L.addEventListener('input', () => { touched = true; applyLight(); });
+  T.addEventListener('input', applyLight);
+  if (reduce) { applyLight(); }
+  else {
+    L.value = 0; applyLight();
+    const dur = 1900; let t0 = null;
+    const tick = t => {
+      if (touched) return;
+      if (t0 === null) t0 = t;
+      const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+      L.value = Math.round(72 * e); applyLight();
+      if (k < 1) requestAnimationFrame(tick);
+    };
+    setTimeout(() => requestAnimationFrame(tick), 350);
+  }
+
+  /* ---------- carrusel ---------- */
+  const track = $('#track'), prog = $('#prog'), prev = $('#prev'), next = $('#next');
+  function onScroll() {
+    const max = track.scrollWidth - track.clientWidth;
+    prog.style.setProperty('--p', max > 0 ? track.scrollLeft / max : 0);
+    prog.style.setProperty('--vis', Math.min(1, track.clientWidth / track.scrollWidth));
+    prev.disabled = track.scrollLeft < 4;
+    next.disabled = track.scrollLeft > max - 4;
+  }
+  function step(dir) {
+    const c = $('.card', track);
+    const gap = parseFloat(getComputedStyle(track).columnGap) || 20;
+    track.scrollBy({ left: dir * (c.getBoundingClientRect().width + gap), behavior: reduce ? 'auto' : 'smooth' });
+  }
+  prev.onclick = () => step(-1); next.onclick = () => step(1);
+  track.addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll); onScroll();
+  let drag = null, moved = false;
+  track.addEventListener('pointerdown', e => {
+    if (e.pointerType !== 'mouse' || e.button !== 0 || e.target.closest('.tools')) return;
+    drag = { x: e.clientX, s: track.scrollLeft }; moved = false;
+  });
+  addEventListener('pointermove', e => {
+    if (!drag) return;
+    const dx = e.clientX - drag.x;
+    if (!moved && Math.abs(dx) > 6) { moved = true; track.classList.add('dragging'); }
+    if (moved) track.scrollLeft = drag.s - dx;
+  });
+  addEventListener('pointerup', () => {
+    if (!drag) return;
+    drag = null; track.classList.remove('dragging');
+  });
+  track.addEventListener('click', e => { if (moved) { e.stopPropagation(); e.preventDefault(); moved = false; } }, true);
+
+  /* ---------- colección ---------- */
+  const coll = $('#coll'), collSlots = $$('.slot', coll).map(s => slots[s.dataset.id]);
+  const press = (group, btn) => $$('button', group).forEach(b => b.setAttribute('aria-pressed', b === btn));
+  $$('#chips button').forEach(b => b.onclick = () => {
+    press($('#chips'), b);
+    $$('.piece', coll).forEach(p => p.hidden = b.dataset.f !== 'all' && p.dataset.cat !== b.dataset.f);
+  });
+  $$('#fxs button').forEach(b => b.onclick = () => {
+    press($('#fxs'), b);
+    collSlots.forEach(s => s.setFx(b.dataset.fx));
+  });
+  const inten = $('#inten');
+  inten.addEventListener('input', () => {
+    coll.style.setProperty('--i', inten.value / 100);
+    $('#intenv').textContent = inten.value + '%'; fill(inten);
+  });
+  fill(inten);
+
+  /* ---------- antes y después ---------- */
+  const cmp = $('#cmp'), cmpr = $('#cmpr');
+  cmpr.addEventListener('input', () => cmp.style.setProperty('--p', cmpr.value));
+  $('#pick-before').onclick = () => slots['cmp-before'].input.click();
+  $('#pick-after').onclick = () => slots['cmp-after'].input.click();
+  $('#aged').onchange = e => cmp.classList.toggle('aged', e.target.checked);
+
+  /* ---------- línea del tiempo ---------- */
+  const eras = [
+    { from: 1920, name: 'Vanguardias', where: 'Sala 1, planta baja',
+      text: 'Los primeros años de la colección: pintura de ruptura, manifiestos impresos y objetos de taller que cambiaron la manera de mirar.' },
+    { from: 1950, name: 'Cantera y abstracción', where: 'Patio central y Sala 2',
+      text: 'La piedra sale del taller al espacio público y la pintura se vuelve color puro. Es el núcleo de la colección permanente.' },
+    { from: 1980, name: 'Imagen y archivo', where: 'Sala 3',
+      text: 'Fotografía, fotocopia y video. Artistas que trabajan con álbumes familiares, periódicos y cintas encontradas.' },
+    { from: 2000, name: 'Presente en proceso', where: 'Salas 4 y 5',
+      text: 'Obra reciente y proyectos que todavía cambian. Aquí las piezas se instalan, se prueban y a veces se reescriben durante la exposición.' }
+  ];
+  const yr = $('#yr'), min = 1920, max = 2026;
+  const eraSlots = $$('#eras .slot');
+  $('#ticks').innerHTML = eras.map(e => '<span style="left:' + ((e.from - min) / (max - min) * 100) + '%">' + e.from + '</span>').join('');
+  function eraIndex(y) { let i = 0; eras.forEach((e, k) => { if (y >= e.from) i = k; }); return i; }
+  function applyYear() {
+    const y = +yr.value, i = eraIndex(y), e = eras[i];
+    $('#year').textContent = y;
+    $('#era-name').textContent = e.name;
+    $('#era-text').textContent = e.text;
+    $('#era-where').textContent = e.where;
+    yr.setAttribute('aria-valuetext', y + ', ' + e.name);
+    eraSlots.forEach((s, k) => s.classList.toggle('on', k === i));
+    fill(yr);
+  }
+  yr.addEventListener('input', applyYear); applyYear();
+
+  /* ---------- boletos ---------- */
+  const price = [120, 60, 0], qty = [0, 0, 0];
+  const money = new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' });
+  function calc() {
+    qty.forEach((q, i) => $('#n' + i).textContent = q);
+    $('#total').textContent = money.format(qty.reduce((s, q, i) => s + q * price[i], 0));
+  }
+  $$('.step button').forEach(b => b.onclick = () => {
+    const t = +b.dataset.t, d = +b.dataset.d;
+    qty[t] = Math.max(0, Math.min(10, qty[t] + d)); calc();
+  });
+  const dateEl = $('#date');
+  const iso = x => x.getFullYear() + '-' + String(x.getMonth() + 1).padStart(2, '0') + '-' + String(x.getDate()).padStart(2, '0');
+  const tm = new Date(); tm.setDate(tm.getDate() + 1); if (tm.getDay() === 1) tm.setDate(tm.getDate() + 1);
+  dateEl.min = iso(new Date()); dateEl.value = iso(tm);
+  $('#reserve').onclick = () => {
+    const n = qty.reduce((a, b) => a + b, 0);
+    if (!n) { toast('Agrega al menos un boleto.'); return; }
+    if (!dateEl.value) { toast('Elige una fecha de visita.'); return; }
+    if (new Date(dateEl.value + 'T12:00').getDay() === 1) { toast('Los lunes el museo está cerrado. Elige otro día.'); return; }
+    const f = new Date(dateEl.value + 'T12:00').toLocaleDateString('es-MX', { weekday: 'long', day: 'numeric', month: 'long' });
+    toast('Reserva lista: ' + n + (n === 1 ? ' boleto' : ' boletos') + ' para el ' + f + '.');
+  };
+  calc();
+})();
+</script>
+</body>
+</html>
