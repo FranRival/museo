@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Carroza Aurora | Museo Umbral</title>
+<title>Fiat 1400 B, carroza fúnebre | Museo Umbral</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&display=swap" rel="stylesheet">
@@ -160,6 +160,7 @@ h3{font-size:1.25rem;font-weight:650;letter-spacing:-.01em;line-height:1.15}
 .hs{position:absolute;z-index:5;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;border:2px solid #fff;background:var(--gold);cursor:pointer;padding:0;animation:pulse 2.6s infinite;touch-action:none}
 .hs.on{background:#fff;border-color:var(--gold);animation:none}
 .hs .lab{position:absolute;left:38px;top:50%;transform:translateY(-50%);white-space:nowrap;background:rgba(44,27,22,.92);color:#fff;font:600 13px var(--ui);padding:7px 11px;border-radius:99px;opacity:0;pointer-events:none;transition:opacity .15s}
+.hs.l .lab{left:auto;right:38px}
 .hs.on .lab,.hs:hover .lab,.hs:focus-visible .lab{opacity:1}
 .hsimg.edit .hs{cursor:grab;outline:2px dashed #fff;outline-offset:3px}
 .hlist{display:grid;gap:0;border-top:1.5px solid var(--ink)}
@@ -167,7 +168,7 @@ h3{font-size:1.25rem;font-weight:650;letter-spacing:-.01em;line-height:1.15}
 .hcard h3{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .hcard h3::after{content:"+";font-weight:400;font-size:1.5rem;transition:transform .25s}
 .hcard p{margin:0;max-height:0;overflow:hidden;color:var(--muted);font:400 17px/1.5 var(--text);transition:max-height .35s,margin .35s}
-.hcard.on p{max-height:9rem;margin-top:.6rem}
+.hcard.on p{max-height:16rem;margin-top:.6rem}
 .hcard.on h3::after{transform:rotate(45deg)}
 .hcard.on h3{color:var(--brand)}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .hcard.on h3{color:var(--gold)}}
@@ -187,6 +188,13 @@ h3{font-size:1.25rem;font-weight:650;letter-spacing:-.01em;line-height:1.15}
 .sp dt{font:500 14px var(--ui);color:var(--muted)}
 .sp dd{margin:.2rem 0 0;font:600 1.35rem/1.2 var(--ui);letter-spacing:-.01em}
 
+/* ---------- rareza ---------- */
+.rare{background:var(--brand);color:var(--cream);text-align:center}
+.rare .orn{color:var(--gold)}
+.rare h2{margin:26px auto 0;max-width:18ch}
+.rare p{max-width:46rem;margin:1.6rem auto 0;font:400 clamp(1.15rem,2vw,1.5rem)/1.5 var(--text)}
+.rare strong{font-weight:600}
+
 /* ---------- historia ---------- */
 .story{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,6vw,96px);align-items:start}
 .sticky{position:sticky;top:90px}
@@ -196,7 +204,7 @@ h3{font-size:1.25rem;font-weight:650;letter-spacing:-.01em;line-height:1.15}
 .sfig .slot.on{opacity:1;pointer-events:auto}
 .chap{min-height:78vh;display:flex;flex-direction:column;justify-content:center;opacity:.35;transition:opacity .4s}
 .chap.on{opacity:1}
-.chap .yr{font:780 clamp(3.4rem,8vw,6.5rem)/.9 var(--ui);letter-spacing:-.05em;font-variation-settings:"wdth" 78,"opsz" 96;color:var(--brand)}
+.chap .yr{font:780 clamp(3rem,7vw,5.5rem)/.9 var(--ui);letter-spacing:-.05em;font-variation-settings:"wdth" 78,"opsz" 96;color:var(--brand)}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .chap .yr{color:var(--gold)}}
 :root[data-theme="dark"] .chap .yr{color:var(--gold)}
 .chap h3{font-size:clamp(1.5rem,2.6vw,2.1rem);margin:.8rem 0 .6rem;letter-spacing:-.02em}
@@ -318,7 +326,7 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
 
 <div class="bar" id="bar">
   <div class="wrap">
-    <b>Carroza Aurora</b>
+    <b>Fiat 1400 B</b>
     <nav aria-label="Secciones">
       <a href="#video">Video</a><a href="#detalles">Detalles</a><a href="#historia">Historia</a><a href="#girar">Gírala</a><a href="#galeria">Galería</a>
     </nav>
@@ -336,17 +344,17 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
   <div class="hero-in">
     <div class="wrap">
       <div>
-        <h1><span class="ln"><i>Carroza</i></span><span class="ln"><i>Aurora</i></span></h1>
-        <p class="sub">Carroza fúnebre de caballos, hacia 1910</p>
+        <h1><span class="ln"><i>Fiat</i></span><span class="ln"><i>1400 B</i></span></h1>
+        <p class="sub">Carroza fúnebre a escala 1:48, pieza única de inspiración napolitana</p>
         <div class="row">
           <a class="btn gold" href="#video">Ver el video</a>
           <a class="btn cream" href="#girar">Gírala</a>
         </div>
       </div>
       <div class="facts" aria-label="Datos rápidos">
-        <div>Sala 2, planta baja<small>Dónde verla</small></div>
-        <div>Nogal, vidrio y hierro<small>Materiales</small></div>
-        <div>Restaurada en 2025<small>Estado</small></div>
+        <div>Fiat 1400 B, 1958<small>Modelo base</small></div>
+        <div>1:48, pieza única<small>Escala y edición</small></div>
+        <div>Metal, resina y plástico<small>Materiales</small></div>
       </div>
     </div>
   </div>
@@ -356,8 +364,8 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
 <section class="intro">
   <div class="wrap">
     <svg class="orn" width="64" height="34" viewBox="0 0 64 34" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M4 30h56M14 30a18 18 0 0 1 36 0M32 4v6M13 10l4 4M51 10l-4 4M5 20l5 2M59 20l-5 2"/></svg>
-    <h2>Una carroza que cruzó la ciudad despacio.</h2>
-    <p>Acompañó cortejos durante más de seis décadas. Hoy se exhibe restaurada, con sus cristales, su talla y sus plumas, para recorrerla de cerca y entender cómo se despedía a alguien hace un siglo.</p>
+    <h2>Un santuario rodante, a escala 1:48.</h2>
+    <p>Réplica artesanal de una carroza fúnebre napolitana construida sobre el Fiat 1400 B. Sus paneles de cristal, sus cortinas y sus linternas tienen un significado, y nunca existió una versión industrial: esta pieza es la única que lo cuenta.</p>
   </div>
 </section>
 
@@ -367,7 +375,7 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
     <div class="head">
       <div>
         <h2>Mírala en movimiento</h2>
-        <p class="lead">El proceso de restauración y el primer recorrido de la carroza después de más de cuarenta años detenida.</p>
+        <p class="lead">Un recorrido de cerca por la miniatura: los cristales, las cortinas, las linternas y los leones de la parte trasera.</p>
       </div>
     </div>
     <div class="vwrap" id="vwrap">
@@ -394,28 +402,32 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
 <section id="detalles">
   <div class="wrap">
     <div style="margin-bottom:clamp(28px,4vw,48px)">
-      <h2>Mira de cerca</h2>
-      <p class="lead">Toca los puntos sobre la fotografía para conocer cada parte de la carroza.</p>
+      <h2>Simbología arquitectónica</h2>
+      <p class="lead">Una carroza napolitana se lee como un pequeño templo. Toca los puntos sobre la fotografía para conocer el significado de cada elemento.</p>
     </div>
     <div class="det">
       <div>
         <div class="hsimg" id="hsimg">
           <div class="slot" data-id="detail" data-label="Foto de detalle de la carroza" data-hint="Horizontal, 4:3"></div>
-          <button class="hs" data-i="0" style="left:30%;top:46%" aria-label="Cristales biselados"><span class="lab">Cristales biselados</span></button>
-          <button class="hs" data-i="1" style="left:56%;top:30%" aria-label="Talla en madera"><span class="lab">Talla en madera</span></button>
-          <button class="hs" data-i="2" style="left:48%;top:12%" aria-label="Plumeros"><span class="lab">Plumeros</span></button>
-          <button class="hs" data-i="3" style="left:24%;top:80%" aria-label="Ruedas con rayos"><span class="lab">Ruedas con rayos</span></button>
+          <button class="hs" data-i="0" style="left:50%;top:24%" aria-label="Cúpula y techo"><span class="lab">Cúpula y techo</span></button>
+          <button class="hs" data-i="1" style="left:50%;top:9%" aria-label="La cruz y los puntos cardinales"><span class="lab">La cruz</span></button>
+          <button class="hs" data-i="2" style="left:33%;top:50%" aria-label="Las cortinas fúnebres"><span class="lab">Cortinas fúnebres</span></button>
+          <button class="hs l" data-i="3" style="left:84%;top:60%" aria-label="Los custodios de león"><span class="lab">Custodios de león</span></button>
+          <button class="hs" data-i="4" style="left:19%;top:34%" aria-label="Linternas de la ruta"><span class="lab">Linternas de la ruta</span></button>
+          <button class="hs" data-i="5" style="left:63%;top:48%" aria-label="Cámara ceremonial"><span class="lab">Cámara ceremonial</span></button>
         </div>
         <div class="edit-row">
           <button class="btn small ghost" id="edit" type="button">Mover puntos</button>
-          <span>Después de subir tu foto, colócalos sobre cada parte.</span>
+          <span>Después de subir tu foto, colócalos sobre cada elemento.</span>
         </div>
       </div>
       <div class="hlist" id="hlist">
-        <button class="hcard on" type="button" data-i="0"><h3>Cristales biselados</h3><p>Seis paneles de vidrio con borde biselado. Dejaban ver el féretro durante todo el cortejo.</p></button>
-        <button class="hcard" type="button" data-i="1"><h3>Talla en madera</h3><p>Columnas y guirnaldas talladas a mano en nogal, con restos de pan de oro que se conservaron en la restauración.</p></button>
-        <button class="hcard" type="button" data-i="2"><h3>Plumeros</h3><p>Penachos de plumas negras sobre el techo, propios de los cortejos de mayor categoría.</p></button>
-        <button class="hcard" type="button" data-i="3"><h3>Ruedas con rayos</h3><p>Madera con llanta de hierro. Se reemplazaron tres rayos; las demás piezas son originales.</p></button>
+        <button class="hcard on" type="button" data-i="0"><h3>Cúpula y techo</h3><p>Su cubierta piramidal curva rinde homenaje a dos templos sagrados de la arquitectura italiana: la Basílica de San Francisco de Paula en Nápoles y el Panteón de Agripa en Roma.</p></button>
+        <button class="hcard" type="button" data-i="1"><h3>La cruz y los puntos cardinales</h3><p>Elevada sobre cuatro relieves en la cúspide, representa la guía espiritual de las almas hacia su descanso eterno.</p></button>
+        <button class="hcard" type="button" data-i="2"><h3>Las cortinas fúnebres</h3><p>Hacen remembranza a la tradición europea del siglo XVII, un privilegio textil reservado históricamente para el luto de reyes y soberanos.</p></button>
+        <button class="hcard" type="button" data-i="3"><h3>Los custodios de león</h3><p>Esculpidos en los costados traseros, los rostros de león simbolizan la custodia, la fuerza y la protección del difunto, una alegoría también vinculada a la resurrección.</p></button>
+        <button class="hcard" type="button" data-i="4"><h3>Linternas de la ruta</h3><p>Ubicadas en los vértices del féretro, sus luces suavizan el camino del espíritu hacia la eternidad y representan a Cristo como la «Luz del Mundo».</p></button>
+        <button class="hcard" type="button" data-i="5"><h3>Cámara ceremonial</h3><p>Una tarima elevada de textura metálica maximiza la visibilidad del féretro a 360° durante el cortejo. Los bastones ornamentados con puntas rojas aseguran la estabilidad del ataúd: en la arquitectura fúnebre, la riqueza del detalle refleja la vistosidad del funeral.</p></button>
       </div>
     </div>
   </div>
@@ -424,36 +436,48 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
 <!-- DATOS -->
 <section class="specs">
   <div class="wrap">
-    <div class="head"><h2>Datos de la pieza</h2><p class="lead">Información de ejemplo. Cámbiala por la ficha real de la carroza.</p></div>
+    <div class="head"><h2>Ficha técnica</h2></div>
     <dl class="sgrid" style="margin:0">
-      <div class="sp"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><dt>Época</dt><dd>Hacia 1910</dd></div>
-      <div class="sp"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-8 5-14 15-14 0 10-6 15-14 15"/><path d="M5 19 14 10"/></svg><dt>Materiales</dt><dd>Nogal, vidrio y hierro</dd></div>
-      <div class="sp"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2"/><path d="M12 3v7M12 14v7M3 12h7M14 12h7M5.6 5.6l5 5M13.4 13.4l5 5M18.4 5.6l-5 5M10.6 13.4l-5 5"/></svg><dt>Tracción</dt><dd>Cuatro caballos</dd></div>
-      <div class="sp"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="8" width="20" height="8" rx="1"/><path d="M6 8v3M10 8v4M14 8v3M18 8v4"/></svg><dt>Largo</dt><dd>4.2 metros</dd></div>
-      <div class="sp"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><dt>Procedencia</dt><dd>Taller de carruajes de la región</dd></div>
-      <div class="sp"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg><dt>Estado</dt><dd>Restaurada en 2025</dd></div>
+      <div class="sp"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 15v-3l2-5h14l2 5v3"/><path d="M3 12h18"/><circle cx="7.5" cy="16.5" r="1.8"/><circle cx="16.5" cy="16.5" r="1.8"/></svg><dt>Modelo base</dt><dd>Fiat 1400 B (1958)</dd></div>
+      <div class="sp"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg><dt>Edición</dt><dd>Pieza única, variación de serie ultra limitada</dd></div>
+      <div class="sp"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="8" width="20" height="8" rx="1"/><path d="M6 8v3M10 8v4M14 8v3M18 8v4"/></svg><dt>Escala</dt><dd>1:48</dd></div>
+      <div class="sp"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><dt>Fabricación</dt><dd>Ensamblaje híbrido, customizado artesanalmente en Italia</dd></div>
+      <div class="sp"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16M6 20v-6a6 6 0 0 1 12 0v6M12 4v4"/></svg><dt>Estilo</dt><dd>Inspiración napolitana (estética partenopea)</dd></div>
+      <div class="sp"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 13 9 5 9-5"/></svg><dt>Materiales</dt><dd>Metal, resina, plástico y componentes adaptados</dd></div>
     </dl>
+  </div>
+</section>
+
+<!-- RAREZA -->
+<section class="rare">
+  <div class="wrap">
+    <svg class="orn" width="64" height="34" viewBox="0 0 64 34" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M4 30h56M14 30a18 18 0 0 1 36 0M32 4v6M13 10l4 4M51 10l-4 4M5 20l5 2M59 20l-5 2"/></svg>
+    <h2>Rareza y valor patrimonial</h2>
+    <p>Esta réplica en miniatura fue creada de forma artesanal por <strong>Gulp Models Italia</strong>, un pequeño grupo de entusiastas que hacían modelos a escala bajo pedido.</p>
+    <p>Como el Fiat 1400 B fúnebre nunca fue producido de manera industrial por ninguna firma comercial, esta pieza customizada es un testimonio material único del patrimonio y la historia fúnebre mundial.</p>
   </div>
 </section>
 
 <!-- HISTORIA -->
 <section id="historia">
   <div class="wrap">
-    <div style="margin-bottom:clamp(28px,4vw,48px)"><h2>Su historia</h2></div>
+    <div style="margin-bottom:clamp(28px,4vw,48px)"><h2>Del chasis al santuario</h2></div>
     <div class="story">
       <div class="sticky">
         <div class="sfig">
-          <div class="slot" data-id="story-0" data-label="El taller, 1910" data-hint="Vertical, 4:5"></div>
-          <div class="slot" data-id="story-1" data-label="En servicio, 1938" data-hint="Vertical, 4:5"></div>
-          <div class="slot" data-id="story-2" data-label="El olvido, 1974" data-hint="Vertical, 4:5"></div>
-          <div class="slot" data-id="story-3" data-label="La restauración, 2025" data-hint="Vertical, 4:5"></div>
+          <div class="slot" data-id="story-0" data-label="FIAT, 1899" data-hint="Vertical, 4:5"></div>
+          <div class="slot" data-id="story-1" data-label="Fiat 1400 B, 1958" data-hint="Vertical, 4:5"></div>
+          <div class="slot" data-id="story-2" data-label="Carrocería Grazia, posguerra" data-hint="Vertical, 4:5"></div>
+          <div class="slot" data-id="story-3" data-label="Cortejos, 1962 y 2015" data-hint="Vertical, 4:5"></div>
+          <div class="slot" data-id="story-4" data-label="La miniatura de Gulp Models Italia" data-hint="Vertical, 4:5"></div>
         </div>
       </div>
       <div>
-        <article class="chap" data-i="0"><div class="yr">1910</div><h3>Nace en un taller</h3><p>Un carrocero de la región la construye por encargo de una familia de comerciantes. Tarda catorce meses en tallar y ensamblar la caja.</p></article>
-        <article class="chap" data-i="1"><div class="yr">1938</div><h3>Años de servicio</h3><p>Es la carroza más solicitada de la ciudad. Recorre calles de empedrado con cuatro caballos y plumas negras.</p></article>
-        <article class="chap" data-i="2"><div class="yr">1974</div><h3>Queda guardada</h3><p>Llegan los coches fúnebres de motor. La carroza pasa cuatro décadas cubierta con lonas en una bodega.</p></article>
-        <article class="chap" data-i="3"><div class="yr">2025</div><h3>Vuelve a salir</h3><p>El taller del museo la restaura durante once meses. Hoy está abierta a la vista, con sus piezas originales y las nuevas bien identificadas.</p></article>
+        <article class="chap" data-i="0"><div class="yr">1899</div><h3>Nace FIAT</h3><p>Giovanni Agnelli funda en Turín la Fabbrica Italiana Automobili Torino (FIAT), la empresa que décadas después daría origen al 1400 B.</p></article>
+        <article class="chap" data-i="1"><div class="yr">1958</div><h3>El Fiat 1400 B</h3><p>Entre 1950 y 1959 nace el Fiat 1400 B. Marcó un hito después de la Segunda Guerra Mundial al ser el primer vehículo italiano impulsado por un motor diésel, y sentó las bases de una plataforma robusta y confiable.</p></article>
+        <article class="chap" data-i="2"><div class="yr">Posguerra</div><h3>La conversión funeraria</h3><p>Italia se consolidó como la capital mundial del carrozado especializado. En Bolonia, la Carrocería Grazia, bajo la dirección de Oliviero Grazia, concibió las primeras conversiones fúnebres sobre el chasis del 1400 B: estilo barroco napolitano, carrocerías traseras extendidas, paneles de cristal y ornamentación de santuario rodante.</p></article>
+        <article class="chap" data-i="3"><div class="yr">1962 y 2015</div><h3>Solemnidad y cortejos</h3><p>El lenguaje estético de la Carrocería Grazia proyectaba tal distinción que sus vehículos fueron la elección para exequias de gran trascendencia en la Italia del siglo XX. Se recuerdan los cortejos de Charles «Lucky» Luciano en 1962 y de Vittorio Casamonica en Roma en 2015, con música de El Padrino, pétalos lanzados desde un helicóptero y mantas con la frase «Rey de Roma».</p></article>
+        <article class="chap" data-i="4"><div class="yr">Hoy</div><h3>Una miniatura única</h3><p>Gulp Models Italia la construyó a escala 1:48 como pieza única. Es el testimonio material de un diseño que nunca se fabricó en serie.</p></article>
       </div>
     </div>
   </div>
@@ -469,8 +493,8 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
       </div>
       <button class="btn ghost" id="auto" type="button">Girar sola</button>
     </div>
-    <div class="viewer" id="viewer" aria-label="Vista giratoria de la carroza">
-      <img id="vimg" alt="Carroza Aurora vista desde un ángulo" hidden>
+    <div class="viewer" id="viewer" aria-label="Vista giratoria de la carroza Fiat 1400 B">
+      <img id="vimg" alt="Fiat 1400 B vista desde un ángulo" hidden>
       <div class="vempty" id="vempty"><b>Falta la foto del ángulo 1</b><span>Súbela en la miniatura de abajo</span></div>
       <div class="dial" aria-hidden="true"><svg id="dialn" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m12 5 2.6 7H9.4L12 5Z" fill="currentColor"/></svg></div>
       <div class="vlab" id="vlab">Ángulo 1 de 6</div>
@@ -502,11 +526,11 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
     </div>
     <div class="track" id="track" tabindex="0" role="region" aria-label="Galería de imágenes">
       <div class="gi g-arch"><div class="slot" data-zoom data-group="gal" data-id="gal-0" data-label="Vista frontal" data-hint="Vertical, 3:4"></div></div>
-      <div class="gi g-wide"><div class="slot" data-zoom data-group="gal" data-id="gal-1" data-label="La carroza en la sala" data-hint="Horizontal, 4:3"></div></div>
-      <div class="gi g-circle"><div class="slot" data-zoom data-group="gal" data-id="gal-2" data-label="Detalle del farol" data-hint="Cuadrada, 1:1"></div></div>
-      <div class="gi g-cap"><div class="slot" data-zoom data-group="gal" data-id="gal-3" data-label="Columna tallada" data-hint="Vertical, 2:3"></div></div>
-      <div class="gi g-leaf"><div class="slot" data-zoom data-group="gal" data-id="gal-4" data-label="Rueda restaurada" data-hint="Vertical, 4:5"></div></div>
-      <div class="gi g-tall"><div class="slot" data-zoom data-group="gal" data-id="gal-5" data-label="Archivo del taller" data-hint="Vertical, 3:4"></div></div>
+      <div class="gi g-wide"><div class="slot" data-zoom data-group="gal" data-id="gal-1" data-label="Vista trasera con los leones" data-hint="Horizontal, 4:3"></div></div>
+      <div class="gi g-circle"><div class="slot" data-zoom data-group="gal" data-id="gal-2" data-label="Linterna de la ruta" data-hint="Cuadrada, 1:1"></div></div>
+      <div class="gi g-cap"><div class="slot" data-zoom data-group="gal" data-id="gal-3" data-label="Cúpula y cruz" data-hint="Vertical, 2:3"></div></div>
+      <div class="gi g-leaf"><div class="slot" data-zoom data-group="gal" data-id="gal-4" data-label="Cortinas fúnebres" data-hint="Vertical, 4:5"></div></div>
+      <div class="gi g-tall"><div class="slot" data-zoom data-group="gal" data-id="gal-5" data-label="Cámara ceremonial" data-hint="Vertical, 3:4"></div></div>
     </div>
     <div class="prog" id="prog" aria-hidden="true"><i></i></div>
   </div>
@@ -517,7 +541,7 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
   <div class="wrap grid">
     <div>
       <h2>Verla en persona</h2>
-      <p class="lead">Sala 2, planta baja. Hay visitas guiadas todos los días de apertura. Horarios y datos de ejemplo.</p>
+      <p class="lead">Escanea el código QR de la sala o reserva aquí tu visita guiada. Horarios y datos de ejemplo.</p>
       <dl class="hours">
         <dt>Martes a domingo</dt><dd>10:00 a 18:00</dd>
         <dt>Jueves</dt><dd>10:00 a 20:00</dd>
@@ -552,7 +576,7 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
     <p class="fname fade" style="--d:2s">Museo Umbral</p>
     <p class="t fade" style="--d:2.3s">Arte, archivo y memoria. Colección de carrozas y objetos funerarios.</p>
     <nav class="fade" style="--d:2.6s" aria-label="Pie de página"><a href="#video">Video</a><a href="#detalles">Detalles</a><a href="#historia">Historia</a><a href="#galeria">Galería</a><a href="#visita">Visita</a></nav>
-    <small class="fade" style="--d:2.9s">Carroza Aurora, colección permanente del Museo Umbral.</small>
+    <small class="fade" style="--d:2.9s">Fiat 1400 B a escala 1:48, colección permanente del Museo Umbral.</small>
   </div>
 </footer>
 
@@ -696,7 +720,7 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
 
   /* ---------- detalles con puntos ---------- */
   const hsimg = $('#hsimg'), hs = $$('.hs'), hc = $$('.hcard');
-  hs.forEach((b, i) => { const p = lsGet('hs:' + i); if (p) { try { const o = JSON.parse(p); b.style.left = o.x + '%'; b.style.top = o.y + '%'; } catch (e) {} } });
+  hs.forEach((b, i) => { const p = lsGet('hs2:' + i); if (p) { try { const o = JSON.parse(p); b.style.left = o.x + '%'; b.style.top = o.y + '%'; } catch (e) {} } });
   function setHs(i) { hs.forEach((b, k) => b.classList.toggle('on', k === i)); hc.forEach((c, k) => c.classList.toggle('on', k === i)); }
   setHs(0);
   hc.forEach((c, i) => c.addEventListener('click', () => setHs(i)));
@@ -716,7 +740,7 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
       b.style.left = x + '%'; b.style.top = y + '%'; moved = true; b.dataset.x = x; b.dataset.y = y;
     });
     b.addEventListener('pointerup', () => {
-      if (drag === b && moved) lsSet('hs:' + i, JSON.stringify({ x: +b.dataset.x, y: +b.dataset.y }));
+      if (drag === b && moved) lsSet('hs2:' + i, JSON.stringify({ x: +b.dataset.x, y: +b.dataset.y }));
       drag = null; setTimeout(() => moved = false, 0);
     });
   });
