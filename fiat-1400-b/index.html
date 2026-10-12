@@ -142,6 +142,8 @@ h3{font-size:1.25rem;font-weight:650;letter-spacing:-.01em;line-height:1.15}
 .vwrap .slot{position:absolute;inset:0}
 .vwrap .tools{display:none!important}
 .vwrap video{background:#000;object-fit:contain;pointer-events:none}
+.vhint{display:none;position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:4;border:0;border-radius:99px;background:rgba(44,27,22,.9);color:#fff;font:600 14px var(--ui);padding:12px 18px;cursor:pointer}
+.vwrap.blocked .vhint{display:block}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(201,174,120,.55)}70%{box-shadow:0 0 0 22px rgba(201,174,120,0)}100%{box-shadow:0 0 0 0 rgba(201,174,120,0)}}
 
 /* ---------- detalles ---------- */
@@ -372,6 +374,7 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
     </div>
     <div class="vwrap" id="vwrap">
       <div class="slot" data-id="video-main" data-kind="video" data-label="Video de la carroza" data-hint="MP4"></div>
+      <button class="vhint" id="vhint" type="button">Toca para reproducir</button>
     </div>
   </div>
 </section>
@@ -659,7 +662,7 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
     'gal-16': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am.webp',
     'logo': ''  // logo PNG o SVG: pega aquí su URL
   };
-  const VIDEO_URL = 'https://fiat-model.netlify.app/whatsapp-video.mp4'; // deja '' si no hay video
+  const VIDEO_URL = 'https://yourimageshare.com/ib/I4rspnkIzd.mp4'; // deja '' si no hay video
 
   function Slot(el) {
     const id = el.dataset.id, label = el.dataset.label || 'Archivo';
@@ -746,14 +749,32 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
 
   /* ---------- video: sin controles, mudo y en bucle ---------- */
   const vs = slots['video-main'], v = vs.media, vw = $('#vwrap');
-  v.muted = true; v.loop = true; v.playsInline = true; v.controls = false;
+  v.muted = true; v.defaultMuted = true; v.loop = true; v.playsInline = true; v.controls = false;
+  v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.setAttribute('webkit-playsinline', '');
   v.addEventListener('contextmenu', e => e.preventDefault());
-  const vPlay = () => { if (v.getAttribute('src')) { const p = v.play(); if (p && p.catch) p.catch(() => {}); } };
+  let inView = false, armed = false;
+  // Si el teléfono bloquea el autoplay (ahorro de batería, datos), el primer toque lo inicia
+  function armTap() {
+    if (armed) return; armed = true;
+    const evs = ['touchend', 'pointerup', 'click'];
+    const go = () => { evs.forEach(t => removeEventListener(t, go, true)); armed = false; if (inView) vPlay(); };
+    evs.forEach(t => addEventListener(t, go, true));
+  }
+  function vPlay() {
+    if (!v.getAttribute('src')) return;
+    v.muted = true; v.preload = 'auto';
+    const p = v.play();
+    if (p && p.catch) p.catch(() => { vw.classList.add('blocked'); armTap(); });
+  }
+  $('#vhint').onclick = vPlay;
+  v.addEventListener('playing', () => vw.classList.remove('blocked'));
+  v.addEventListener('canplay', () => { if (inView && v.paused) vPlay(); });
   vs.el.addEventListener('slotchange', () => { vw.classList.toggle('has', vs.filled); if (vs.filled) vPlay(); });
   v.addEventListener('error', () => { if (VIDEO_URL && v.getAttribute('src') === VIDEO_URL) toast('No se pudo cargar el video. Revisa el enlace.'); });
   // el video se descarga solo cuando la sección está cerca de la pantalla
   new IntersectionObserver(([e]) => {
-    if (e.isIntersecting) {
+    inView = e.isIntersecting;
+    if (inView) {
       if (VIDEO_URL && !v.getAttribute('src')) { v.src = VIDEO_URL; v.hidden = false; vs.el.classList.add('filled'); }
       vPlay();
     } else v.pause();
