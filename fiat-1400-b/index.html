@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -531,6 +530,17 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
       <div class="gi g-cap"><div class="slot" data-zoom data-group="gal" data-id="gal-3" data-label="Cúpula y cruz" data-hint="Vertical, 2:3"></div></div>
       <div class="gi g-leaf"><div class="slot" data-zoom data-group="gal" data-id="gal-4" data-label="Cortinas fúnebres" data-hint="Vertical, 4:5"></div></div>
       <div class="gi g-tall"><div class="slot" data-zoom data-group="gal" data-id="gal-5" data-label="Cámara ceremonial" data-hint="Vertical, 3:4"></div></div>
+      <div class="gi g-arch"><div class="slot" data-zoom data-group="gal" data-id="gal-6" data-label="Fiat 1400 B, vista 7" data-hint="Vertical, 3:4"></div></div>
+      <div class="gi g-wide"><div class="slot" data-zoom data-group="gal" data-id="gal-7" data-label="Fiat 1400 B, vista 8" data-hint="Horizontal, 4:3"></div></div>
+      <div class="gi g-circle"><div class="slot" data-zoom data-group="gal" data-id="gal-8" data-label="Fiat 1400 B, vista 9" data-hint="Cuadrada, 1:1"></div></div>
+      <div class="gi g-cap"><div class="slot" data-zoom data-group="gal" data-id="gal-9" data-label="Fiat 1400 B, vista 10" data-hint="Vertical, 2:3"></div></div>
+      <div class="gi g-leaf"><div class="slot" data-zoom data-group="gal" data-id="gal-10" data-label="Fiat 1400 B, vista 11" data-hint="Vertical, 4:5"></div></div>
+      <div class="gi g-tall"><div class="slot" data-zoom data-group="gal" data-id="gal-11" data-label="Fiat 1400 B, vista 12" data-hint="Vertical, 3:4"></div></div>
+      <div class="gi g-arch"><div class="slot" data-zoom data-group="gal" data-id="gal-12" data-label="Fiat 1400 B, vista 13" data-hint="Vertical, 3:4"></div></div>
+      <div class="gi g-wide"><div class="slot" data-zoom data-group="gal" data-id="gal-13" data-label="Fiat 1400 B, vista 14" data-hint="Horizontal, 4:3"></div></div>
+      <div class="gi g-circle"><div class="slot" data-zoom data-group="gal" data-id="gal-14" data-label="Fiat 1400 B, vista 15" data-hint="Cuadrada, 1:1"></div></div>
+      <div class="gi g-cap"><div class="slot" data-zoom data-group="gal" data-id="gal-15" data-label="Fiat 1400 B, vista 16" data-hint="Vertical, 2:3"></div></div>
+      <div class="gi g-leaf"><div class="slot" data-zoom data-group="gal" data-id="gal-16" data-label="Fiat 1400 B, vista 17" data-hint="Vertical, 4:5"></div></div>
     </div>
     <div class="prog" id="prog" aria-hidden="true"><i></i></div>
   </div>
@@ -628,16 +638,59 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
   const ICON = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="m21 16-5-5-8 8"/></svg>';
   const slots = {};
 
+  /* =====================================================================
+     CONFIGURACIÓN DE IMÁGENES
+     BASE: carpeta de Netlify donde están tus archivos .webp.
+     Escribe el nombre de cada archivo. Déjalo vacío ('') si ese lugar
+     no tiene foto todavía: seguirá mostrando el espacio para subirla.
+     Puedes repetir el mismo archivo en varios lugares.
+     ===================================================================== */
+  const BASE = 'https://fiat-model.netlify.app/';
+  const IMAGES = {
+    'hero': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%281%29.webp',  // portada
+    'detail': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%282%29.webp',  // foto de simbología
+    'story-0': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%283%29.webp',  // historia: FIAT 1899
+    'story-1': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%284%29.webp',  // historia: Fiat 1400 B 1958
+    'story-2': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%285%29.webp',  // historia: posguerra
+    'story-3': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%286%29.webp',  // historia: cortejos
+    'story-4': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%287%29.webp',  // historia: hoy
+    'spin-0': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%288%29.webp',  // Gírala: ángulo 1
+    'spin-1': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%289%29.webp',
+    'spin-2': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%2810%29.webp',
+    'spin-3': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%2811%29.webp',
+    'spin-4': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%2812%29.webp',
+    'spin-5': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%2813%29.webp',
+    'gal-0': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%2814%29.webp',  // galería
+    'gal-1': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%2815%29.webp',
+    'gal-2': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%2816%29.webp',
+    'gal-3': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%2817%29.webp',
+    'gal-4': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%2818%29.webp',
+    'gal-5': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%2819%29.webp',
+    'gal-6': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%2820%29.webp',
+    'gal-7': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%2821%29.webp',
+    'gal-8': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%2822%29.webp',
+    'gal-9': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%2823%29.webp',
+    'gal-10': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%2824%29.webp',
+    'gal-11': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%2825%29.webp',
+    'gal-12': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%2826%29.webp',
+    'gal-13': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%2827%29.webp',
+    'gal-14': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%2828%29.webp',
+    'gal-15': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%2829%29.webp',
+    'gal-16': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am.webp',
+    'logo': ''  // logo PNG o SVG: pega aquí su URL
+  };
+  const VIDEO_URL = 'https://yourimageshare.com/ib/I4rspnkIzd.mp4'; // deja '' si no hay video
+
   function Slot(el) {
     const id = el.dataset.id, label = el.dataset.label || 'Archivo';
     const kind = el.dataset.kind || 'image', isVideo = kind === 'video', nofx = isVideo || el.hasAttribute('data-nofx');
     el.innerHTML = '<input type="file" accept="' + (isVideo ? 'video/*' : 'image/*') + '" hidden>' +
-      (isVideo ? '<video playsinline preload="metadata" hidden></video>' : '<img alt="" hidden>') +
+      (isVideo ? '<video playsinline preload="metadata" hidden></video>' : '<img alt="" hidden decoding="async"' + (id === 'hero' ? ' fetchpriority="high"' : ' loading="lazy"') + '>') +
       '<div class="ph">' + ICON + '<b>' + (isVideo ? 'Subir video' : kind === 'logo' ? 'Subir logo' : 'Subir imagen') + '</b><span>' + (el.dataset.hint || 'Arrastra o haz clic') + '</span></div>' +
       '<div class="tools"><button type="button" data-act="replace">Cambiar</button>' + (nofx ? '' : '<button type="button" data-act="fx">Estilo</button>') + '<button type="button" data-act="remove">Quitar</button></div>';
     const input = $('input', el), media = $(isVideo ? 'video' : 'img', el);
     if (!isVideo) media.alt = label;
-    let url = null, fx = lsGet('fx:' + id) || '';
+    let url = null, remote = false, fx = lsGet('fx:' + id) || '';
     const api = { el, input, media, get url() { return url; }, get fx() { return fx; }, get filled() { return !!url; } };
     const sync = () => {
       if (!url) { el.setAttribute('role', 'button'); el.tabIndex = 0; el.setAttribute('aria-label', 'Subir: ' + label); }
@@ -647,13 +700,24 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
     };
     function setFx(v) { FX.forEach(f => f && el.classList.remove('fx-' + f)); fx = v; if (v) el.classList.add('fx-' + v); lsSet('fx:' + id, v || null); }
     api.setFx = setFx;
+    function showRemote(src) {
+      if (url && !remote) URL.revokeObjectURL(url);
+      remote = true; url = src; media.src = src; media.hidden = false; el.classList.add('filled'); sync();
+    }
+    media.addEventListener('error', () => {
+      if (!remote) return;
+      console.warn('No se encontró la imagen: ' + url);
+      remote = false; url = null; media.removeAttribute('src'); media.hidden = true; el.classList.remove('filled'); sync();
+    });
     function show(blob) {
-      if (url) URL.revokeObjectURL(url);
+      if (url && !remote) URL.revokeObjectURL(url);
+      remote = false;
       url = URL.createObjectURL(blob); media.src = url; media.hidden = false; el.classList.add('filled'); sync();
     }
     function clear() {
       if (isVideo) media.pause();
-      if (url) URL.revokeObjectURL(url);
+      if (url && !remote) URL.revokeObjectURL(url);
+      remote = false;
       url = null; media.removeAttribute('src'); if (isVideo) media.load(); media.hidden = true; el.classList.remove('filled'); sync();
     }
     async function take(file) {
@@ -680,6 +744,8 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
     ['dragleave', 'drop'].forEach(t => el.addEventListener(t, e => { e.preventDefault(); el.classList.remove('drag'); }));
     el.addEventListener('drop', e => take(e.dataTransfer.files[0]));
     setFx(fx); sync();
+    const rsrc = IMAGES[id];
+    if (rsrc && !isVideo) showRemote(/^https?:|^data:/.test(rsrc) ? rsrc : BASE + rsrc);
     getF(id).then(b => { if (b instanceof Blob) show(b); });
     slots[id] = api;
   }
@@ -700,15 +766,10 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
 
   /* ---------- video ---------- */
   const vs = slots['video-main'], v = vs.media, vw = $('#vwrap'), seek = $('#vseek');
-  /* Video por URL */
-const VIDEO_URL = "https://yourimageshare.com/ib/I4rspnkIzd.mp4";
-if (VIDEO_URL) {
-  v.src = VIDEO_URL;
-  v.hidden = false;
-  vs.el.classList.add('filled');
-  vw.classList.add('has');
-  v.addEventListener('error', () => toast('No se pudo cargar el video. Revisa el enlace.'));
-}
+  if (VIDEO_URL) {
+    v.src = VIDEO_URL; v.hidden = false; vs.el.classList.add('filled'); vw.classList.add('has');
+    v.addEventListener('error', () => toast('No se pudo cargar el video. Revisa el enlace.'));
+  }
   const fmt = s => { if (!isFinite(s)) return '0:00'; const m = Math.floor(s / 60); return m + ':' + String(Math.floor(s % 60)).padStart(2, '0'); };
   const toggle = () => { v.paused ? v.play() : v.pause(); };
   vs.el.addEventListener('slotchange', () => { vw.classList.toggle('has', vs.filled); vw.classList.remove('playing'); $('#vtime').textContent = '0:00 / 0:00'; seek.value = 0; fill(seek); });
@@ -773,6 +834,7 @@ if (VIDEO_URL) {
     $('#vlab').textContent = 'Ángulo ' + (cur + 1) + ' de ' + N;
     $('#dialn').style.transform = 'rotate(' + (cur / N * 360) + 'deg)';
     $$('#thumbs .slot').forEach((t, k) => t.classList.toggle('cur', k === cur));
+    [cur + 1, cur - 1].forEach(k => { const n = slots['spin-' + ((k + N) % N)]; if (n && n.url) { const im = new Image(); im.src = n.url; } });
   }
   vrange.addEventListener('input', () => showFrame(vrange.value - 1));
   $('#thumbs').addEventListener('click', e => { const s = e.target.closest('.slot'); if (s) showFrame(+s.dataset.id.split('-')[1]); });
