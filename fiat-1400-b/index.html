@@ -6,7 +6,10 @@
 <title>Fiat 1400 B, carroza fúnebre | Museo Umbral</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fiat-model.netlify.app">
+<link rel="preload" as="image" href="https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%281%29.webp" fetchpriority="high">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wdth,wght@75..100,400..800&family=Newsreader:wght@400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wdth,wght@75..100,400..800&family=Newsreader:wght@400;600&display=swap"></noscript>
 <style>
 :root{
   --bg:#F8F0EC; --bg2:#EEDFD7; --ink:#3F2A22; --muted:#7B6258; --paper:#FCF8F5;
@@ -111,8 +114,8 @@ h3{font-size:1.25rem;font-weight:650;letter-spacing:-.01em;line-height:1.15}
 @media (max-width:860px){.hero-in .wrap{grid-template-columns:1fr}}
 .hero h1{font-size:clamp(4.4rem,14.5vw,13rem);font-weight:780;letter-spacing:-.055em;line-height:.82;font-variation-settings:"wdth" 76,"opsz" 96}
 .hero h1 .ln{display:block;overflow:hidden;padding-bottom:.06em}
-.hero h1 .ln i{display:block;font-style:normal;animation:rise 1.2s cubic-bezier(.2,.7,.1,1) both}
-.hero h1 .ln:nth-child(2) i{animation-delay:.14s}
+.hero h1 .ln i{display:block;font-style:normal;animation:rise .75s cubic-bezier(.2,.7,.1,1) both}
+.hero h1 .ln:nth-child(2) i{animation-delay:.08s}
 @keyframes rise{from{transform:translateY(105%)}to{transform:none}}
 .hero .sub{font:500 clamp(1rem,1.6vw,1.3rem)/1.3 var(--ui);margin:1.2rem 0 1.6rem;color:rgba(251,243,238,.88)}
 .hero .row{display:flex;flex-wrap:wrap;gap:12px;pointer-events:auto}
@@ -120,6 +123,9 @@ h3{font-size:1.25rem;font-weight:650;letter-spacing:-.01em;line-height:1.15}
 .facts div{padding:9px 0;border-top:1px solid rgba(251,243,238,.2)}
 .facts div:first-child{border:0;padding-top:0}
 .facts small{display:block;font-size:13px;color:rgba(251,243,238,.7);font-weight:400}
+
+/* ---------- rendimiento: no pintar lo que aún está lejos ---------- */
+.specs,.rare,.gal,.visit{content-visibility:auto;contain-intrinsic-size:auto 760px}
 
 /* ---------- ornamentos ---------- */
 .orn{display:block;margin:0 auto;color:var(--gold)}
@@ -134,21 +140,8 @@ h3{font-size:1.25rem;font-weight:650;letter-spacing:-.01em;line-height:1.15}
 .film .head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 40px;margin-bottom:clamp(26px,4vw,44px)}
 .vwrap{position:relative;aspect-ratio:16/9;background:#150C09;border-radius:6px;overflow:hidden;box-shadow:0 40px 80px -40px #000}
 .vwrap .slot{position:absolute;inset:0}
-.vwrap .tools{left:auto;right:12px;top:12px;bottom:auto}
-.vwrap video{background:#000;object-fit:contain}
-.bigplay{position:absolute;left:50%;top:50%;width:92px;height:92px;margin:-46px 0 0 -46px;border-radius:50%;border:0;background:var(--gold);color:#2C1B16;display:none;place-items:center;cursor:pointer;z-index:4;box-shadow:0 0 0 0 rgba(201,174,120,.6);animation:pulse 2.6s infinite}
-.vwrap.has .bigplay{display:grid}
-.vwrap.playing .bigplay{display:none}
-.vbar{position:absolute;left:0;right:0;bottom:0;z-index:4;display:none;align-items:center;gap:14px;padding:30px 18px 14px;background:linear-gradient(transparent,rgba(10,5,3,.8));font:500 13px var(--ui);color:#fff;--rfill:var(--gold);--thumbb:#fff;--line:rgba(255,255,255,.3)}
-.vwrap.has .vbar{display:flex}
-.vbar button{width:38px;height:38px;border:0;border-radius:50%;background:transparent;color:#fff;display:grid;place-items:center;cursor:pointer;flex:none}
-.vbar button:hover{background:rgba(255,255,255,.16)}
-.vbar .range{flex:1;min-width:60px}
-.vbar time{font-variant-numeric:tabular-nums;white-space:nowrap}
-.vwrap .i-pause{display:none}
-.vwrap.playing .i-pause{display:block}.vwrap.playing .i-play{display:none}
-.vwrap .i-mute{display:none}.vwrap.muted .i-mute{display:block}.vwrap.muted .i-vol{display:none}
-.vwrap:fullscreen{border-radius:0;aspect-ratio:auto}
+.vwrap .tools{display:none!important}
+.vwrap video{background:#000;object-fit:contain;pointer-events:none}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(201,174,120,.55)}70%{box-shadow:0 0 0 22px rgba(201,174,120,0)}100%{box-shadow:0 0 0 0 rgba(201,174,120,0)}}
 
 /* ---------- detalles ---------- */
@@ -378,21 +371,7 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
       </div>
     </div>
     <div class="vwrap" id="vwrap">
-      <div class="slot" data-id="video-main" data-kind="video" data-label="Video de la carroza" data-hint="MP4, hasta 300 MB"></div>
-      <button class="bigplay" id="bigplay" type="button" aria-label="Reproducir video"><svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"/></svg></button>
-      <div class="vbar">
-        <button id="vplay" type="button" aria-label="Reproducir o pausar">
-          <svg class="i-play" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"/></svg>
-          <svg class="i-pause" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4.5" height="14" rx="1"/><rect x="13.5" y="5" width="4.5" height="14" rx="1"/></svg>
-        </button>
-        <time id="vtime">0:00 / 0:00</time>
-        <input class="range" id="vseek" type="range" min="0" max="1000" value="0" aria-label="Posición del video">
-        <button id="vmute" type="button" aria-label="Silenciar o activar sonido">
-          <svg class="i-vol" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>
-          <svg class="i-mute" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="m17 9 5 6M22 9l-5 6"/></svg>
-        </button>
-        <button id="vfs" type="button" aria-label="Pantalla completa"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
-      </div>
+      <div class="slot" data-id="video-main" data-kind="video" data-label="Video de la carroza" data-hint="MP4"></div>
     </div>
   </div>
 </section>
@@ -637,6 +616,7 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
   const FXN = { '': 'Original', bn: 'Blanco y negro', sepia: 'Sepia', duo: 'Duotono', contrast: 'Alto contraste' };
   const ICON = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="m21 16-5-5-8 8"/></svg>';
   const slots = {};
+  const idle = cb => (window.requestIdleCallback ? requestIdleCallback(cb, { timeout: 2500 }) : setTimeout(cb, 600));
 
   /* =====================================================================
      CONFIGURACIÓN DE IMÁGENES
@@ -685,7 +665,7 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
     const id = el.dataset.id, label = el.dataset.label || 'Archivo';
     const kind = el.dataset.kind || 'image', isVideo = kind === 'video', nofx = isVideo || el.hasAttribute('data-nofx');
     el.innerHTML = '<input type="file" accept="' + (isVideo ? 'video/*' : 'image/*') + '" hidden>' +
-      (isVideo ? '<video playsinline preload="metadata" hidden></video>' : '<img alt="" hidden decoding="async"' + (id === 'hero' ? ' fetchpriority="high"' : ' loading="lazy"') + '>') +
+      (isVideo ? '<video playsinline muted loop preload="none" hidden></video>' : '<img alt="" hidden decoding="async"' + (id === 'hero' ? ' fetchpriority="high"' : ' loading="lazy"') + '>') +
       '<div class="ph">' + ICON + '<b>' + (isVideo ? 'Subir video' : kind === 'logo' ? 'Subir logo' : 'Subir imagen') + '</b><span>' + (el.dataset.hint || 'Arrastra o haz clic') + '</span></div>' +
       '<div class="tools"><button type="button" data-act="replace">Cambiar</button>' + (nofx ? '' : '<button type="button" data-act="fx">Estilo</button>') + '<button type="button" data-act="remove">Quitar</button></div>';
     const input = $('input', el), media = $(isVideo ? 'video' : 'img', el);
@@ -746,7 +726,7 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
     setFx(fx); sync();
     const rsrc = IMAGES[id];
     if (rsrc && !isVideo) showRemote(/^https?:|^data:/.test(rsrc) ? rsrc : BASE + rsrc);
-    getF(id).then(b => { if (b instanceof Blob) show(b); });
+    if (!rsrc && !(isVideo && VIDEO_URL)) idle(() => getF(id).then(b => { if (b instanceof Blob) show(b); }));
     slots[id] = api;
   }
   $$('.slot').forEach(Slot);
@@ -764,29 +744,20 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
     requestAnimationFrame(() => { const y = Math.min(scrollY, innerHeight * 1.2); heroBg.style.transform = 'translate3d(0,' + (y * 0.28) + 'px,0)'; ticking = false; });
   }, { passive: true });
 
-  /* ---------- video ---------- */
-  const vs = slots['video-main'], v = vs.media, vw = $('#vwrap'), seek = $('#vseek');
-  if (VIDEO_URL) {
-    v.src = VIDEO_URL; v.hidden = false; vs.el.classList.add('filled'); vw.classList.add('has');
-    v.addEventListener('error', () => toast('No se pudo cargar el video. Revisa el enlace.'));
-  }
-  const fmt = s => { if (!isFinite(s)) return '0:00'; const m = Math.floor(s / 60); return m + ':' + String(Math.floor(s % 60)).padStart(2, '0'); };
-  const toggle = () => { v.paused ? v.play() : v.pause(); };
-  vs.el.addEventListener('slotchange', () => { vw.classList.toggle('has', vs.filled); vw.classList.remove('playing'); $('#vtime').textContent = '0:00 / 0:00'; seek.value = 0; fill(seek); });
-  $('#bigplay').onclick = toggle; $('#vplay').onclick = toggle; v.addEventListener('click', toggle);
-  v.addEventListener('play', () => vw.classList.add('playing'));
-  v.addEventListener('pause', () => vw.classList.remove('playing'));
-  v.addEventListener('ended', () => vw.classList.remove('playing'));
-  v.addEventListener('loadedmetadata', () => { $('#vtime').textContent = '0:00 / ' + fmt(v.duration); });
-  v.addEventListener('timeupdate', () => {
-    if (!v.duration) return;
-    seek.value = v.currentTime / v.duration * 1000; fill(seek);
-    $('#vtime').textContent = fmt(v.currentTime) + ' / ' + fmt(v.duration);
-  });
-  seek.addEventListener('input', () => { if (v.duration) v.currentTime = seek.value / 1000 * v.duration; fill(seek); });
-  $('#vmute').onclick = () => { v.muted = !v.muted; vw.classList.toggle('muted', v.muted); };
-  $('#vfs').onclick = () => { try { document.fullscreenElement ? document.exitFullscreen() : vw.requestFullscreen(); } catch (e) {} };
-  fill(seek);
+  /* ---------- video: sin controles, mudo y en bucle ---------- */
+  const vs = slots['video-main'], v = vs.media, vw = $('#vwrap');
+  v.muted = true; v.loop = true; v.playsInline = true; v.controls = false;
+  v.addEventListener('contextmenu', e => e.preventDefault());
+  const vPlay = () => { if (v.getAttribute('src')) { const p = v.play(); if (p && p.catch) p.catch(() => {}); } };
+  vs.el.addEventListener('slotchange', () => { vw.classList.toggle('has', vs.filled); if (vs.filled) vPlay(); });
+  v.addEventListener('error', () => { if (VIDEO_URL && v.getAttribute('src') === VIDEO_URL) toast('No se pudo cargar el video. Revisa el enlace.'); });
+  // el video se descarga solo cuando la sección está cerca de la pantalla
+  new IntersectionObserver(([e]) => {
+    if (e.isIntersecting) {
+      if (VIDEO_URL && !v.getAttribute('src')) { v.src = VIDEO_URL; v.hidden = false; vs.el.classList.add('filled'); }
+      vPlay();
+    } else v.pause();
+  }, { rootMargin: '300px 0px' }).observe(vw);
 
   /* ---------- detalles con puntos ---------- */
   const hsimg = $('#hsimg'), hs = $$('.hs'), hc = $$('.hcard');
