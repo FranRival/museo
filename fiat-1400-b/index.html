@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Fiat 1400 B, carroza fúnebre | Museo Umbral</title>
+<title>Carroza fúnebre FIAT 1400 B | Museo Umbral</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://fiat-model.netlify.app">
@@ -89,6 +89,16 @@ h3{font-size:1.25rem;font-weight:650;letter-spacing:-.01em;line-height:1.15}
 .range::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--gold);border:2px solid var(--thumbb,var(--ink));margin-top:-9.5px}
 .range::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--gold);border:2px solid var(--thumbb,var(--ink))}
 
+/* ---------- tira del logo ---------- */
+.strip{height:68px;display:flex;align-items:center;justify-content:center;background:#FBF3EE;border-bottom:1px solid rgba(63,42,34,.14)}
+.strip .slot{width:min(240px,56vw);height:46px;background:transparent;border:1.5px dashed rgba(63,42,34,.3);border-radius:4px;overflow:visible}
+.strip .slot.filled{border-color:transparent}
+.strip .slot img{object-fit:contain}
+.strip .ph{flex-direction:row;gap:.5rem;color:#7B6258}
+.strip .ph b{color:#3F2A22}
+.strip .ph span{display:none}
+.strip .tools{display:none!important}
+
 /* ---------- barra fija ---------- */
 .bar{position:fixed;left:0;right:0;top:0;z-index:30;padding-top:env(safe-area-inset-top,0px);background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);transform:translateY(-110%);transition:transform .35s}
 .bar.show{transform:none}
@@ -100,7 +110,7 @@ h3{font-size:1.25rem;font-weight:650;letter-spacing:-.01em;line-height:1.15}
 @media (max-width:860px){.bar nav{display:none}.bar .btn{margin-left:auto}}
 
 /* ---------- hero ---------- */
-.hero{position:relative;min-height:100vh;min-height:100svh;color:var(--cream);overflow:hidden;display:flex;align-items:flex-end;background:var(--choc);--ph:#3B2820;--ph-line:rgba(251,243,238,.07);--muted:rgba(251,243,238,.7);--ink:var(--cream)}
+.hero{position:relative;min-height:calc(100vh - 68px);min-height:calc(100svh - 68px);color:var(--cream);overflow:hidden;display:flex;align-items:flex-end;background:var(--choc);--ph:#3B2820;--ph-line:rgba(251,243,238,.07);--muted:rgba(251,243,238,.7);--ink:var(--cream)}
 .hero-bg{position:absolute;inset:-8% 0;will-change:transform}
 .hero-bg .slot{position:absolute;inset:0}
 .hero .tools{left:auto;right:18px;top:84px;bottom:auto}
@@ -110,9 +120,9 @@ h3{font-size:1.25rem;font-weight:650;letter-spacing:-.01em;line-height:1.15}
 .hero .top a{pointer-events:auto;font:700 1.35rem/1 var(--ui);letter-spacing:-.03em;font-variation-settings:"wdth" 80;text-decoration:none}
 .hero .top span{font:500 14px var(--ui);color:rgba(251,243,238,.8)}
 .hero-in{position:relative;z-index:3;width:100%;padding-bottom:clamp(28px,5vw,64px);pointer-events:none}
-.hero-in .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:end}
+.hero-in .wrap{display:grid;grid-template-columns:minmax(0,1fr);gap:32px;align-items:end}
 @media (max-width:860px){.hero-in .wrap{grid-template-columns:1fr}}
-.hero h1{font-size:clamp(4.4rem,14.5vw,13rem);font-weight:780;letter-spacing:-.055em;line-height:.82;font-variation-settings:"wdth" 76,"opsz" 96}
+.hero h1{font-size:clamp(2.7rem,9.6vw,8.8rem);font-weight:780;letter-spacing:-.055em;line-height:.82;font-variation-settings:"wdth" 76,"opsz" 96}
 .hero h1 .ln{display:block;overflow:hidden;padding-bottom:.06em}
 .hero h1 .ln i{display:block;font-style:normal;animation:rise .75s cubic-bezier(.2,.7,.1,1) both}
 .hero h1 .ln:nth-child(2) i{animation-delay:.08s}
@@ -317,10 +327,11 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
 </style>
 </head>
 <body>
+<div class="strip" id="strip"><div class="slot" data-id="logo-top" data-kind="logo" data-nofx data-label="Logo del museo" data-hint="Logo"></div></div>
 
 <div class="bar" id="bar">
   <div class="wrap">
-    <b>Fiat 1400 B</b>
+    <b>FIAT 1400 B</b>
     <nav aria-label="Secciones">
       <a href="#video">Video</a><a href="#detalles">Detalles</a><a href="#historia">Historia</a><a href="#girar">Gírala</a><a href="#galeria">Galería</a>
     </nav>
@@ -338,17 +349,12 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
   <div class="hero-in">
     <div class="wrap">
       <div>
-        <h1><span class="ln"><i>Fiat</i></span><span class="ln"><i>1400 B</i></span></h1>
-        <p class="sub">Carroza fúnebre a escala 1:48, pieza única de inspiración napolitana</p>
+        <h1><span class="ln"><i>Carroza fúnebre</i></span><span class="ln"><i>FIAT 1400 B.</i></span></h1>
+        <p class="sub">La máxima expresión de la arquitectura barroca del último viaje.</p>
         <div class="row">
           <a class="btn gold" href="#video">Ver el video</a>
           <a class="btn cream" href="#girar">Gírala</a>
         </div>
-      </div>
-      <div class="facts" aria-label="Datos rápidos">
-        <div>Fiat 1400 B, 1958<small>Modelo base</small></div>
-        <div>1:48, pieza única<small>Escala y edición</small></div>
-        <div>Metal, resina y plástico<small>Materiales</small></div>
       </div>
     </div>
   </div>
@@ -358,8 +364,8 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
 <section class="intro">
   <div class="wrap">
     <svg class="orn" width="64" height="34" viewBox="0 0 64 34" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M4 30h56M14 30a18 18 0 0 1 36 0M32 4v6M13 10l4 4M51 10l-4 4M5 20l5 2M59 20l-5 2"/></svg>
-    <h2>Un santuario rodante, a escala 1:48.</h2>
-    <p>Réplica artesanal de una carroza fúnebre napolitana construida sobre el Fiat 1400 B. Sus paneles de cristal, sus cortinas y sus linternas tienen un significado, y nunca existió una versión industrial: esta pieza es la única que lo cuenta.</p>
+    <h2>Legado artesanal italiano.</h2>
+    <p>Obra artesanal inspirada en la mítica conversión de la Carrocería Grazia sobre el FIAT 1400 B. Sus paneles de cristal, cortinas y linternas guardan un profundo significado ceremonial. Una pieza única que custodia la memoria de una joya fúnebre jamás producida en serie.</p>
   </div>
 </section>
 
@@ -368,8 +374,8 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
   <div class="wrap">
     <div class="head">
       <div>
-        <h2>Mírala en movimiento</h2>
-        <p class="lead">Un recorrido de cerca por la miniatura: los cristales, las cortinas, las linternas y los leones de la parte trasera.</p>
+        <h2>Mírala en movimiento.</h2>
+        <p class="lead">Un recorrido cinemático a 360°: desde su techo en cúpula y sus cortinas mortuorias, hasta sus linternas ceremoniales y los leones que custodian la cámara trasera.</p>
       </div>
     </div>
     <div class="vwrap" id="vwrap">
@@ -383,8 +389,8 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
 <section id="detalles">
   <div class="wrap">
     <div style="margin-bottom:clamp(28px,4vw,48px)">
-      <h2>Simbología arquitectónica</h2>
-      <p class="lead">Una carroza napolitana se lee como un pequeño templo. Toca los puntos sobre la fotografía para conocer el significado de cada elemento.</p>
+      <h2>Simbología arquitectónica.</h2>
+      <p class="lead">Cada detalle de este santuario resguarda un simbolismo. Toca los puntos sobre la fotografía para conocer el significado de cada elemento.</p>
     </div>
     <div class="det">
       <div>
@@ -394,7 +400,7 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
           <button class="hs" data-i="1" style="left:50%;top:9%" aria-label="La cruz y los puntos cardinales"><span class="lab">La cruz</span></button>
           <button class="hs" data-i="2" style="left:33%;top:50%" aria-label="Las cortinas fúnebres"><span class="lab">Cortinas fúnebres</span></button>
           <button class="hs l" data-i="3" style="left:84%;top:60%" aria-label="Los custodios de león"><span class="lab">Custodios de león</span></button>
-          <button class="hs" data-i="4" style="left:19%;top:34%" aria-label="Linternas de la ruta"><span class="lab">Linternas de la ruta</span></button>
+          <button class="hs" data-i="4" style="left:19%;top:34%" aria-label="Las cuatro linternas de la ruta"><span class="lab">Las cuatro linternas</span></button>
           <button class="hs" data-i="5" style="left:63%;top:48%" aria-label="Cámara ceremonial"><span class="lab">Cámara ceremonial</span></button>
         </div>
         <div class="edit-row">
@@ -403,12 +409,12 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
         </div>
       </div>
       <div class="hlist" id="hlist">
-        <button class="hcard on" type="button" data-i="0"><h3>Cúpula y techo</h3><p>Su cubierta piramidal curva rinde homenaje a dos templos sagrados de la arquitectura italiana: la Basílica de San Francisco de Paula en Nápoles y el Panteón de Agripa en Roma.</p></button>
-        <button class="hcard" type="button" data-i="1"><h3>La cruz y los puntos cardinales</h3><p>Elevada sobre cuatro relieves en la cúspide, representa la guía espiritual de las almas hacia su descanso eterno.</p></button>
-        <button class="hcard" type="button" data-i="2"><h3>Las cortinas fúnebres</h3><p>Hacen remembranza a la tradición europea del siglo XVII, un privilegio textil reservado históricamente para el luto de reyes y soberanos.</p></button>
-        <button class="hcard" type="button" data-i="3"><h3>Los custodios de león</h3><p>Esculpidos en los costados traseros, los rostros de león simbolizan la custodia, la fuerza y la protección del difunto, una alegoría también vinculada a la resurrección.</p></button>
-        <button class="hcard" type="button" data-i="4"><h3>Linternas de la ruta</h3><p>Ubicadas en los vértices del féretro, sus luces suavizan el camino del espíritu hacia la eternidad y representan a Cristo como la «Luz del Mundo».</p></button>
-        <button class="hcard" type="button" data-i="5"><h3>Cámara ceremonial</h3><p>Una tarima elevada de textura metálica maximiza la visibilidad del féretro a 360° durante el cortejo. Los bastones ornamentados con puntas rojas aseguran la estabilidad del ataúd: en la arquitectura fúnebre, la riqueza del detalle refleja la vistosidad del funeral.</p></button>
+        <button class="hcard on" type="button" data-i="0"><h3>Cúpula y techo.</h3><p>Su cubierta piramidal curva rinde homenaje a dos templos sagrados de la arquitectura italiana: la Basílica de San Francisco de Paula en Nápoles y el Panteón de Agripa en Roma.</p></button>
+        <button class="hcard" type="button" data-i="1"><h3>La cruz y los puntos cardinales.</h3><p>Elevada sobre cuatro relieves en la cúspide, representa la guía espiritual de las almas hacia su descanso eterno.</p></button>
+        <button class="hcard" type="button" data-i="2"><h3>Las cortinas fúnebres.</h3><p>Hacen remembranza a la tradición europea del siglo XVII (“según el santo, son las cortinas”), un privilegio textil reservado históricamente para el luto de reyes y soberanos.</p></button>
+        <button class="hcard" type="button" data-i="3"><h3>Los custodios de león.</h3><p>Esculpidos en los costados traseros, los rostros de león simbolizan la custodia, la fuerza y la protección del difunto, una alegoría también vinculada a la resurrección.</p></button>
+        <button class="hcard" type="button" data-i="4"><h3>Las cuatro linternas de la ruta.</h3><p>Ubicadas en la parte externa de la cámara ceremonial, sus luces suavizan el camino del espíritu hacia la eternidad y representan a Cristo como la “Luz del Mundo”.</p></button>
+        <button class="hcard" type="button" data-i="5"><h3>Cámara ceremonial.</h3><p>Una tarima elevada de textura metálica maximiza la visibilidad del féretro a 360° durante el cortejo. Los bastones ornamentados con puntas rojas aseguran la estabilidad del ataúd: en la arquitectura fúnebre, la riqueza del detalle refleja la vistosidad del funeral.</p></button>
       </div>
     </div>
   </div>
@@ -417,9 +423,9 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
 <!-- DATOS -->
 <section class="specs">
   <div class="wrap">
-    <div class="head"><h2>Ficha técnica</h2></div>
+    <div class="head"><h2>Ficha técnica.</h2></div>
     <dl class="sgrid" style="margin:0">
-      <div class="sp"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 15v-3l2-5h14l2 5v3"/><path d="M3 12h18"/><circle cx="7.5" cy="16.5" r="1.8"/><circle cx="16.5" cy="16.5" r="1.8"/></svg><dt>Modelo base</dt><dd>Fiat 1400 B (1958)</dd></div>
+      <div class="sp"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 15v-3l2-5h14l2 5v3"/><path d="M3 12h18"/><circle cx="7.5" cy="16.5" r="1.8"/><circle cx="16.5" cy="16.5" r="1.8"/></svg><dt>Modelo base</dt><dd>FIAT 1400 B (1958)</dd></div>
       <div class="sp"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg><dt>Edición</dt><dd>Pieza única, variación de serie ultra limitada</dd></div>
       <div class="sp"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="8" width="20" height="8" rx="1"/><path d="M6 8v3M10 8v4M14 8v3M18 8v4"/></svg><dt>Escala</dt><dd>1:48</dd></div>
       <div class="sp"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><dt>Fabricación</dt><dd>Ensamblaje híbrido, customizado artesanalmente en Italia</dd></div>
@@ -433,32 +439,31 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
 <section class="rare">
   <div class="wrap">
     <svg class="orn" width="64" height="34" viewBox="0 0 64 34" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M4 30h56M14 30a18 18 0 0 1 36 0M32 4v6M13 10l4 4M51 10l-4 4M5 20l5 2M59 20l-5 2"/></svg>
-    <h2>Rareza y valor patrimonial</h2>
-    <p>Esta réplica en miniatura fue creada de forma artesanal por <strong>Gulp Models Italia</strong>, un pequeño grupo de entusiastas que hacían modelos a escala bajo pedido.</p>
-    <p>Como el Fiat 1400 B fúnebre nunca fue producido de manera industrial por ninguna firma comercial, esta pieza customizada es un testimonio material único del patrimonio y la historia fúnebre mundial.</p>
+    <h2>Rareza y valor patrimonial.</h2>
+    <p>Esta réplica en miniatura, fue creada de forma artesanal, por un pequeño grupo de entusiastas que hacían modelos a escala bajo pedido. Dado que el FIAT 1400 B fúnebre nunca fue producido de manera industrial por ninguna firma comercial, esta pieza customizada representa un testimonio material único del patrimonio y la historia fúnebre mundial.</p>
   </div>
 </section>
 
 <!-- HISTORIA -->
 <section id="historia">
   <div class="wrap">
-    <div style="margin-bottom:clamp(28px,4vw,48px)"><h2>Del chasis al santuario</h2></div>
+    <div style="margin-bottom:clamp(28px,4vw,48px)"><h2>Evolución y trascendencia.</h2></div>
     <div class="story">
       <div class="sticky">
         <div class="sfig">
           <div class="slot" data-id="story-0" data-label="FIAT, 1899" data-hint="Vertical, 4:5"></div>
-          <div class="slot" data-id="story-1" data-label="Fiat 1400 B, 1958" data-hint="Vertical, 4:5"></div>
+          <div class="slot" data-id="story-1" data-label="FIAT 1400 B, 1958" data-hint="Vertical, 4:5"></div>
           <div class="slot" data-id="story-2" data-label="Carrocería Grazia, posguerra" data-hint="Vertical, 4:5"></div>
           <div class="slot" data-id="story-3" data-label="Cortejos, 1962 y 2015" data-hint="Vertical, 4:5"></div>
           <div class="slot" data-id="story-4" data-label="La miniatura de Gulp Models Italia" data-hint="Vertical, 4:5"></div>
         </div>
       </div>
       <div>
-        <article class="chap" data-i="0"><div class="yr">1899</div><h3>Nace FIAT</h3><p>Giovanni Agnelli funda en Turín la Fabbrica Italiana Automobili Torino (FIAT), la empresa que décadas después daría origen al 1400 B.</p></article>
-        <article class="chap" data-i="1"><div class="yr">1958</div><h3>El Fiat 1400 B</h3><p>Entre 1950 y 1959 nace el Fiat 1400 B. Marcó un hito después de la Segunda Guerra Mundial al ser el primer vehículo italiano impulsado por un motor diésel, y sentó las bases de una plataforma robusta y confiable.</p></article>
-        <article class="chap" data-i="2"><div class="yr">Posguerra</div><h3>La conversión funeraria</h3><p>Italia se consolidó como la capital mundial del carrozado especializado. En Bolonia, la Carrocería Grazia, bajo la dirección de Oliviero Grazia, concibió las primeras conversiones fúnebres sobre el chasis del 1400 B: estilo barroco napolitano, carrocerías traseras extendidas, paneles de cristal y ornamentación de santuario rodante.</p></article>
-        <article class="chap" data-i="3"><div class="yr">1962 y 2015</div><h3>Solemnidad y cortejos</h3><p>El lenguaje estético de la Carrocería Grazia proyectaba tal distinción que sus vehículos fueron la elección para exequias de gran trascendencia en la Italia del siglo XX. Se recuerdan los cortejos de Charles «Lucky» Luciano en 1962 y de Vittorio Casamonica en Roma en 2015, con música de El Padrino, pétalos lanzados desde un helicóptero y mantas con la frase «Rey de Roma».</p></article>
-        <article class="chap" data-i="4"><div class="yr">Hoy</div><h3>Una miniatura única</h3><p>Gulp Models Italia la construyó a escala 1:48 como pieza única. Es el testimonio material de un diseño que nunca se fabricó en serie.</p></article>
+        <article class="chap" data-i="0"><div class="yr">1899.</div><h3>Nace FIAT.</h3><p>Giovanni Agnelli funda en Turín la Fabbrica Italiana Automobili Torino (FIAT), la empresa que décadas después daría origen al 1400 B.</p></article>
+        <article class="chap" data-i="1"><div class="yr">1958.</div><h3>El FIAT 1400 B.</h3><p>Entre 1950 y 1959 nació el FIAT 1400 B. Marcó un hito después de la Segunda Guerra Mundial al ser el primer vehículo italiano impulsado por un motor diésel, y sentó las bases de una plataforma robusta y confiable.</p></article>
+        <article class="chap" data-i="2"><div class="yr">Posguerra.</div><h3>La conversión funeraria.</h3><p>Al finalizar la segunda guerra mundial, Italia, se consolidó como la capital mundial del carrozado especializado. En Bolonia, la Carrocería Grazia, bajo la dirección de Oliviero Grazia, concibió las primeras conversiones fúnebres sobre el chasis del 1400 B: estilo barroco napolitano, carrocerías traseras extendidas, paneles de cristal y ornamentación de santuario rodante.</p></article>
+        <article class="chap" data-i="3"><div class="yr">1962 y 2015.</div><h3>Solemnidad y cortejos.</h3><p>El lenguaje estético de la Carrocería Grazia proyectó tal distinción que sus vehículos fueron la elección para exequias de gran trascendencia en la Italia del siglo XX. Por ejemplo, los cortejos de: Charles “Lucky” Luciano en 1962 (el padre del crimen organizado en Estados Unidos de América); y de Vittorio Casamonica en 2015 (mafioso que tuvo sus exequias en el centro de Roma, con música de El Padrino, pétalos lanzados desde un helicóptero y mantas con la frase «Rey de Roma»).</p></article>
+        <article class="chap" data-i="4"><div class="yr">Hoy.</div><h3>Un testimonio material irrepetible.</h3><p>Es el vestigio material de un diseño que nunca se fabricó en serie.</p></article>
       </div>
     </div>
   </div>
@@ -469,13 +474,13 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
   <div class="wrap">
     <div class="head">
       <div>
-        <h2>Gírala</h2>
-        <p class="lead">Arrastra sobre la imagen o usa el control para verla desde cada lado. Sube las seis fotos en las miniaturas de abajo.</p>
+        <h2>Gírala.</h2>
+        <p class="lead">Arrastra sobre la imagen o usa el control para verla desde cada lado.</p>
       </div>
       <button class="btn ghost" id="auto" type="button">Girar sola</button>
     </div>
-    <div class="viewer" id="viewer" aria-label="Vista giratoria de la carroza Fiat 1400 B">
-      <img id="vimg" alt="Fiat 1400 B vista desde un ángulo" hidden>
+    <div class="viewer" id="viewer" aria-label="Vista giratoria de la carroza FIAT 1400 B">
+      <img id="vimg" alt="FIAT 1400 B vista desde un ángulo" hidden>
       <div class="vempty" id="vempty"><b>Falta la foto del ángulo 1</b><span>Súbela en la miniatura de abajo</span></div>
       <div class="dial" aria-hidden="true"><svg id="dialn" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m12 5 2.6 7H9.4L12 5Z" fill="currentColor"/></svg></div>
       <div class="vlab" id="vlab">Ángulo 1 de 6</div>
@@ -497,8 +502,7 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
   <div class="wrap">
     <div class="head">
       <div>
-        <h2>Galería</h2>
-        <p class="lead">Desliza o arrastra. Toca una imagen para verla grande.</p>
+        <h2>Galería.</h2>
       </div>
       <div class="nav-btns">
         <button class="round" id="prev" type="button" aria-label="Anterior"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 5-7 7 7 7"/></svg></button>
@@ -512,17 +516,17 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
       <div class="gi g-cap"><div class="slot" data-zoom data-group="gal" data-id="gal-3" data-label="Cúpula y cruz" data-hint="Vertical, 2:3"></div></div>
       <div class="gi g-leaf"><div class="slot" data-zoom data-group="gal" data-id="gal-4" data-label="Cortinas fúnebres" data-hint="Vertical, 4:5"></div></div>
       <div class="gi g-tall"><div class="slot" data-zoom data-group="gal" data-id="gal-5" data-label="Cámara ceremonial" data-hint="Vertical, 3:4"></div></div>
-      <div class="gi g-arch"><div class="slot" data-zoom data-group="gal" data-id="gal-6" data-label="Fiat 1400 B, vista 7" data-hint="Vertical, 3:4"></div></div>
-      <div class="gi g-wide"><div class="slot" data-zoom data-group="gal" data-id="gal-7" data-label="Fiat 1400 B, vista 8" data-hint="Horizontal, 4:3"></div></div>
-      <div class="gi g-circle"><div class="slot" data-zoom data-group="gal" data-id="gal-8" data-label="Fiat 1400 B, vista 9" data-hint="Cuadrada, 1:1"></div></div>
-      <div class="gi g-cap"><div class="slot" data-zoom data-group="gal" data-id="gal-9" data-label="Fiat 1400 B, vista 10" data-hint="Vertical, 2:3"></div></div>
-      <div class="gi g-leaf"><div class="slot" data-zoom data-group="gal" data-id="gal-10" data-label="Fiat 1400 B, vista 11" data-hint="Vertical, 4:5"></div></div>
-      <div class="gi g-tall"><div class="slot" data-zoom data-group="gal" data-id="gal-11" data-label="Fiat 1400 B, vista 12" data-hint="Vertical, 3:4"></div></div>
-      <div class="gi g-arch"><div class="slot" data-zoom data-group="gal" data-id="gal-12" data-label="Fiat 1400 B, vista 13" data-hint="Vertical, 3:4"></div></div>
-      <div class="gi g-wide"><div class="slot" data-zoom data-group="gal" data-id="gal-13" data-label="Fiat 1400 B, vista 14" data-hint="Horizontal, 4:3"></div></div>
-      <div class="gi g-circle"><div class="slot" data-zoom data-group="gal" data-id="gal-14" data-label="Fiat 1400 B, vista 15" data-hint="Cuadrada, 1:1"></div></div>
-      <div class="gi g-cap"><div class="slot" data-zoom data-group="gal" data-id="gal-15" data-label="Fiat 1400 B, vista 16" data-hint="Vertical, 2:3"></div></div>
-      <div class="gi g-leaf"><div class="slot" data-zoom data-group="gal" data-id="gal-16" data-label="Fiat 1400 B, vista 17" data-hint="Vertical, 4:5"></div></div>
+      <div class="gi g-arch"><div class="slot" data-zoom data-group="gal" data-id="gal-6" data-label="FIAT 1400 B, vista 7" data-hint="Vertical, 3:4"></div></div>
+      <div class="gi g-wide"><div class="slot" data-zoom data-group="gal" data-id="gal-7" data-label="FIAT 1400 B, vista 8" data-hint="Horizontal, 4:3"></div></div>
+      <div class="gi g-circle"><div class="slot" data-zoom data-group="gal" data-id="gal-8" data-label="FIAT 1400 B, vista 9" data-hint="Cuadrada, 1:1"></div></div>
+      <div class="gi g-cap"><div class="slot" data-zoom data-group="gal" data-id="gal-9" data-label="FIAT 1400 B, vista 10" data-hint="Vertical, 2:3"></div></div>
+      <div class="gi g-leaf"><div class="slot" data-zoom data-group="gal" data-id="gal-10" data-label="FIAT 1400 B, vista 11" data-hint="Vertical, 4:5"></div></div>
+      <div class="gi g-tall"><div class="slot" data-zoom data-group="gal" data-id="gal-11" data-label="FIAT 1400 B, vista 12" data-hint="Vertical, 3:4"></div></div>
+      <div class="gi g-arch"><div class="slot" data-zoom data-group="gal" data-id="gal-12" data-label="FIAT 1400 B, vista 13" data-hint="Vertical, 3:4"></div></div>
+      <div class="gi g-wide"><div class="slot" data-zoom data-group="gal" data-id="gal-13" data-label="FIAT 1400 B, vista 14" data-hint="Horizontal, 4:3"></div></div>
+      <div class="gi g-circle"><div class="slot" data-zoom data-group="gal" data-id="gal-14" data-label="FIAT 1400 B, vista 15" data-hint="Cuadrada, 1:1"></div></div>
+      <div class="gi g-cap"><div class="slot" data-zoom data-group="gal" data-id="gal-15" data-label="FIAT 1400 B, vista 16" data-hint="Vertical, 2:3"></div></div>
+      <div class="gi g-leaf"><div class="slot" data-zoom data-group="gal" data-id="gal-16" data-label="FIAT 1400 B, vista 17" data-hint="Vertical, 4:5"></div></div>
     </div>
     <div class="prog" id="prog" aria-hidden="true"><i></i></div>
   </div>
@@ -532,7 +536,7 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
 <section class="visit" id="visita">
   <div class="wrap grid">
     <div>
-      <h2>Verla en persona</h2>
+      <h2>Verla en persona.</h2>
       <p class="lead">Escanea el código QR de la sala o reserva aquí tu visita guiada. Horarios y datos de ejemplo.</p>
       <dl class="hours">
         <dt>Martes a domingo</dt><dd>10:00 a 18:00</dd>
@@ -547,7 +551,6 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
         <label>Personas<select id="ppl"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></label>
       </div>
       <button class="btn" id="reserve" type="button" style="justify-content:center">Reservar visita</button>
-      <p class="note">Es una demostración: no se envía ninguna reserva.</p>
     </div>
   </div>
 </section>
@@ -568,7 +571,7 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
     <p class="fname fade" style="--d:2s">Museo Umbral</p>
     <p class="t fade" style="--d:2.3s">Arte, archivo y memoria. Colección de carrozas y objetos funerarios.</p>
     <nav class="fade" style="--d:2.6s" aria-label="Pie de página"><a href="#video">Video</a><a href="#detalles">Detalles</a><a href="#historia">Historia</a><a href="#galeria">Galería</a><a href="#visita">Visita</a></nav>
-    <small class="fade" style="--d:2.9s">Fiat 1400 B a escala 1:48, colección permanente del Museo Umbral.</small>
+    <small class="fade" style="--d:2.9s">FIAT 1400 B a escala 1:48, colección permanente del Museo Umbral.</small>
   </div>
 </footer>
 
@@ -633,7 +636,7 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
     'hero': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%281%29.webp',  // portada
     'detail': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%282%29.webp',  // foto de simbología
     'story-0': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%283%29.webp',  // historia: FIAT 1899
-    'story-1': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%284%29.webp',  // historia: Fiat 1400 B 1958
+    'story-1': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%284%29.webp',  // historia: FIAT 1400 B 1958
     'story-2': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%285%29.webp',  // historia: posguerra
     'story-3': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%286%29.webp',  // historia: cortejos
     'story-4': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%287%29.webp',  // historia: hoy
@@ -660,9 +663,12 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
     'gal-14': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%2828%29.webp',
     'gal-15': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am%20%2829%29.webp',
     'gal-16': 'https://fiat-model.netlify.app/whatsapp%20image%202026-10-11%20at%209.12.58%20am.webp',
-    'logo': ''  // logo PNG o SVG: pega aquí su URL
+    'logo': '',      // logo del pie de página (PNG o SVG): pega aquí su URL
+    'logo-top': ''   // logo de la tira superior: si lo dejas vacío usa el de 'logo'
   };
-  const VIDEO_URL = 'https://yourimageshare.com/ib/I4rspnkIzd.mp4'; // deja '' si no hay video
+  // Video comprimido en Netlify. Si ese archivo no existe, usa el anterior como respaldo.
+  const VIDEO_SOURCES = ['https://yourimageshare.com/ib/wg3wUejcGd.mp4', 'https://yourimageshare.com/ib/wg3wUejcGd.mp4'];
+  const VIDEO_URL = VIDEO_SOURCES[0];
 
   function Slot(el) {
     const id = el.dataset.id, label = el.dataset.label || 'Archivo';
@@ -727,7 +733,7 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
     ['dragleave', 'drop'].forEach(t => el.addEventListener(t, e => { e.preventDefault(); el.classList.remove('drag'); }));
     el.addEventListener('drop', e => take(e.dataTransfer.files[0]));
     setFx(fx); sync();
-    const rsrc = IMAGES[id];
+    const rsrc = IMAGES[id] || (id === 'logo-top' ? IMAGES['logo'] : '');
     if (rsrc && !isVideo) showRemote(/^https?:|^data:/.test(rsrc) ? rsrc : BASE + rsrc);
     if (!rsrc && !(isVideo && VIDEO_URL)) idle(() => getF(id).then(b => { if (b instanceof Blob) show(b); }));
     slots[id] = api;
@@ -770,7 +776,12 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
   v.addEventListener('playing', () => vw.classList.remove('blocked'));
   v.addEventListener('canplay', () => { if (inView && v.paused) vPlay(); });
   vs.el.addEventListener('slotchange', () => { vw.classList.toggle('has', vs.filled); if (vs.filled) vPlay(); });
-  v.addEventListener('error', () => { if (VIDEO_URL && v.getAttribute('src') === VIDEO_URL) toast('No se pudo cargar el video. Revisa el enlace.'); });
+  let vsi = 0;
+  v.addEventListener('error', () => {
+    if (!VIDEO_URL || v.getAttribute('src') !== VIDEO_SOURCES[vsi]) return;
+    if (vsi < VIDEO_SOURCES.length - 1) { vsi++; v.src = VIDEO_SOURCES[vsi]; vPlay(); }
+    else toast('No se pudo cargar el video. Revisa el enlace.');
+  });
   // el video se descarga solo cuando la sección está cerca de la pantalla
   new IntersectionObserver(([e]) => {
     inView = e.isIntersecting;
