@@ -152,8 +152,14 @@ h3{font-size:1.25rem;font-weight:650;letter-spacing:-.01em;line-height:1.15}
 .vwrap .slot{position:absolute;inset:0}
 .vwrap .tools{display:none!important}
 .vwrap video{background:#000;object-fit:contain;pointer-events:none}
-.vhint{display:none;position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:4;border:0;border-radius:99px;background:rgba(44,27,22,.9);color:#fff;font:600 14px var(--ui);padding:12px 18px;cursor:pointer}
+.vhint{display:none;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:4;border:0;border-radius:99px;background:rgba(44,27,22,.9);color:#fff;font:600 14px var(--ui);padding:12px 18px;cursor:pointer}
 .vwrap.blocked .vhint{display:block}
+.vsound{display:none;position:absolute;right:16px;bottom:16px;z-index:4;align-items:center;gap:8px;border:0;border-radius:99px;background:rgba(44,27,22,.88);color:#fff;font:600 14px var(--ui);padding:11px 16px 11px 13px;cursor:pointer}
+.vwrap.has .vsound{display:inline-flex}
+.vsound:hover{background:#000}
+.vsound .on{display:none}
+.vsound.sound .on{display:block}
+.vsound.sound .off{display:none}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(201,174,120,.55)}70%{box-shadow:0 0 0 22px rgba(201,174,120,0)}100%{box-shadow:0 0 0 0 rgba(201,174,120,0)}}
 
 /* ---------- detalles ---------- */
@@ -381,6 +387,11 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
     <div class="vwrap" id="vwrap">
       <div class="slot" data-id="video-main" data-kind="video" data-label="Video de la carroza" data-hint="MP4"></div>
       <button class="vhint" id="vhint" type="button">Toca para reproducir</button>
+      <button class="vsound" id="vsound" type="button" aria-pressed="false" aria-label="Activar sonido">
+        <svg class="off" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="m17 9 5 6M22 9l-5 6"/></svg>
+        <svg class="on" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>
+        <span id="vsoundt">Activar sonido</span>
+      </button>
     </div>
   </div>
 </section>
@@ -667,7 +678,7 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
     'logo-top': ''   // logo de la tira superior: si lo dejas vacío usa el de 'logo'
   };
   // Video comprimido en Netlify. Si ese archivo no existe, usa el anterior como respaldo.
-  const VIDEO_SOURCES = ['https://yourimageshare.com/ib/wg3wUejcGd.mp4', 'https://yourimageshare.com/ib/wg3wUejcGd.mp4'];
+  const VIDEO_SOURCES = ['https://fiat-model.netlify.app/video-carroza.mp4', 'https://yourimageshare.com/ib/I4rspnkIzd.mp4'];
   const VIDEO_URL = VIDEO_SOURCES[0];
 
   function Slot(el) {
@@ -766,12 +777,32 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
     const go = () => { evs.forEach(t => removeEventListener(t, go, true)); armed = false; if (inView) vPlay(); };
     evs.forEach(t => addEventListener(t, go, true));
   }
+  let wantSound = false;
+  const sb = $('#vsound');
+  function paintSound() {
+    sb.classList.toggle('sound', wantSound);
+    sb.setAttribute('aria-pressed', wantSound);
+    sb.setAttribute('aria-label', wantSound ? 'Silenciar' : 'Activar sonido');
+    $('#vsoundt').textContent = wantSound ? 'Silenciar' : 'Activar sonido';
+  }
   function vPlay() {
     if (!v.getAttribute('src')) return;
-    v.muted = true; v.preload = 'auto';
+    v.muted = !wantSound; v.preload = 'auto';
     const p = v.play();
-    if (p && p.catch) p.catch(() => { vw.classList.add('blocked'); armTap(); });
+    if (p && p.catch) p.catch(() => {
+      if (wantSound) {            // el navegador no dejó reproducir con sonido: vuelve a mudo
+        wantSound = false; v.muted = true; paintSound();
+        const q = v.play(); if (q && q.catch) q.catch(() => { vw.classList.add('blocked'); armTap(); });
+      } else { vw.classList.add('blocked'); armTap(); }
+    });
   }
+  sb.onclick = () => {
+    wantSound = !wantSound; v.muted = !wantSound; paintSound();
+    if (v.paused) vPlay();
+  };
+  paintSound();
+  // no dejar audio sonando si la pestaña queda en segundo plano
+  document.addEventListener('visibilitychange', () => { if (document.hidden) v.pause(); else if (inView) vPlay(); });
   $('#vhint').onclick = vPlay;
   v.addEventListener('playing', () => vw.classList.remove('blocked'));
   v.addEventListener('canplay', () => { if (inView && v.paused) vPlay(); });
@@ -786,7 +817,7 @@ dialog::backdrop{background:rgba(20,10,8,.92)}
   new IntersectionObserver(([e]) => {
     inView = e.isIntersecting;
     if (inView) {
-      if (VIDEO_URL && !v.getAttribute('src')) { v.src = VIDEO_URL; v.hidden = false; vs.el.classList.add('filled'); }
+      if (VIDEO_URL && !v.getAttribute('src')) { v.src = VIDEO_URL; v.hidden = false; vs.el.classList.add('filled'); vw.classList.add('has'); }
       vPlay();
     } else v.pause();
   }, { rootMargin: '300px 0px' }).observe(vw);
